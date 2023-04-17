@@ -1,22 +1,32 @@
+body {
+    background-color: lightskyblue;
+    z-index: -2;
+}
+
+
 #mainContainer {
-    background-image: url('sprites/mainBg.png');
+    z-index: 3;
+    background-image: url('sprites/sprite main.webp');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     width: 100%;
-    height: 100em;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-position: center;
 }
 
 .duck{
-
+    z-index: 1;
+    transform: scale(4);
 
 }
 
 
 #duck {
-    transform: scale(4);
+    z-index: 2;
+    /* transform: none; */
     background: url('sprites/duckHuntSprites.png') no-repeat -130px -121px;
 	width: 34px;
 	height: 24px;
@@ -27,7 +37,7 @@
 
   position: relative;
   animation-name: moveUp;
-  animation-duration: 2s;
+  animation-duration: 4s;
   animation-fill-mode: forwards;
 
 }
@@ -36,7 +46,7 @@
 
     position: relative;
     animation-name: moveRight;
-    animation-duration: 2s;
+    animation-duration: 4s;
     animation-fill-mode: forwards;
 
 }
@@ -44,7 +54,7 @@
 .move-Left{ 
     position: relative;
     animation-name: moveLeft;
-    animation-duration: 2s;
+    animation-duration: 4s;
     animation-fill-mode: forwards;
     
 }
@@ -58,18 +68,38 @@
 } */
 
 .move-Right-Diagonal-up{ 
+    position: relative;
+    animation-name: moveDRup;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
 
 }
 
 .move-Left-Diagonal-up{ 
+    transform: scaleX(-1);
+    position: relative;
+    animation-name: moveDLup;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
     
 }
 
 .move-Right-Diagonal-down{ 
+    transform: scaleY(-1);
+    position: relative;
+    animation-name: moveDRdown;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
 
 }
 
 .move-Left-Diagonal-down{ 
+    /* transform :scaleY(-1);
+    transform :scaleX(-1); */
+    position: relative;
+    animation-name: moveDLdown;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
     
 }
 
@@ -90,7 +120,7 @@
       left: 0;
     }
     100% {
-      left: 1900%;
+      left: 200%;
 
     }
   }
@@ -101,9 +131,55 @@
       right: 0;
     }
     100% {
-      right: 1900%;
+      right: 500%;
 
     }
   }
+
+  @keyframes moveDRup {
+    0% {
+      transform: translate(0, 0);
+
+    }
+    100% {
+      transform: translate(300%, 300%);
+
+    }
+}
+
+    @keyframes moveDLup {
+        0% {
+          transform: translate(0, 0);
+    
+        }
+        100% {
+          transform: translate(-300%, 300%);
+    
+        }
+  }
+
+
+  @keyframes moveDRdown {
+    0% {
+      transform: translate(0, 0);
+
+    }
+    100% {
+      transform: translate(300%, -300%);
+
+    }
+}
+
+@keyframes moveDLdown {
+    0% {
+      transform: translate(0, 0);
+
+    }
+    100% {
+      transform: translate(-300%, -300%);
+
+    }
+}
+  
 
 

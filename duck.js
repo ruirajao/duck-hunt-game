@@ -4,16 +4,16 @@
 function horizontal(direction) {
 
  let duck =  document.getElementById("duck");
-    // if(direction == "left") {
-      // duck.removeAttribute("class");
+    if(direction === "left") {
+      duck.removeAttribute("class");
       duck.setAttribute("class","move-Left");
-        // duck.style.transform = "scaleX(-1)";
-    // } 
-    // if(direction == "right") {
-    //   duck.removeAttribute("class");
-    //   duck.setAttribute("class","move-right");
-    //   duck.style.transform = "none";
-    // }
+        duck.style.transform = "scaleX(-1)";
+    } 
+    if(direction === "right") {
+      duck.removeAttribute("class");
+      duck.setAttribute("class","move-right");
+      duck.style.transform = "none";
+    }
 
  const start =  () => {duck.style.backgroundPosition = `-130px -121px`;
  duck.style.width = "34px";
@@ -47,17 +47,33 @@ setInterval(() => {
 
 
 function diagonal(x,y) {
-    
  let duck =  document.getElementById("duck");
+ //duck.removeAttribute("class");
 
-
-
-    if(x == "left") {
-        duck.style.transform = "scaleX(-1)";
-    } 
-    if (y == "down") {
-        duck.style.transform = "scaleY(-1);";
+ switch(x,y) {
+  case "right": 
+    switch(y){
+      case "down":
+        duck.setAttribute('class','move-Right-Diagonal-down');
+        break;
+      case "up":
+        duck.setAttribute('class','move-Right-Diagonal-up')
+        break;
     }
+    break; 
+
+    case "left":
+      switch(y){
+        case "down":
+          duck.setAttribute('class', 'move-Left-Diagonal-down');
+          break;
+        
+        case "up":
+          duck.setAttribute('class', 'move-Left-Diagonal-up');
+          break;
+      }
+      break;
+ }
 
  const start =  () => {duck.style.backgroundPosition = `-134px -157px`;
  duck.style.width = "25px";
@@ -84,9 +100,11 @@ setInterval(() => {
     }, 600);
   }, 900);
 
-  setInterval();
+  setInterval(300);
 }
 
-
+function main(){
+  diagonal("left", "down");
+}
 
 
