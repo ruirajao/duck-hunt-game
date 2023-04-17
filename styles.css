@@ -1,0 +1,6 @@
+#mainContainer {
+    background-image: url('sprites/mainBg.png');
+    
+    width: 1500px;
+    height: 1200px;
+}
