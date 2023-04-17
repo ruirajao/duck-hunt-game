@@ -16,7 +16,7 @@
 
 
 #duck {
-    position: relative;
+    transform: none;
     transform: scale(4);
     background: url('sprites/duckHuntSprites.png') no-repeat -130px -121px;
 	width: 34px;
@@ -59,4 +59,48 @@
     margin-top: auto;
     margin-bottom: 20px;
     border-radius: 4px;
+}
+
+.move-Up{
+    position: relative;
+    animation-name: moveUp;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+  }
+  .move-Right{
+      position: relative;
+      animation-name: moveRight;
+      animation-duration: 2s;
+      animation-fill-mode: forwards;
+  }
+  .move-Left{
+      position: relative;
+      animation-name: moveLeft;
+      animation-duration: 2s;
+      animation-fill-mode: forwards;
+  }
+
+  @keyframes moveUp {
+    0% {
+      bottom: 0;
+    }
+    100% {
+      bottom: 340%;
+    }
+  }
+  @keyframes moveRight {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: 1900%;
+    }
+  }
+  @keyframes moveLeft {
+    0% {
+      right: 0;
+    }
+    100% {
+      right: 1900%;
+    }
   }
