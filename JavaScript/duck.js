@@ -4,10 +4,12 @@ function horizontal(direction) {
         //duck.removeAttribute("class");
         duck.setAttribute("class","move-Left");
         duck.style.transform = "scaleX(-1)";
+        duck.style.zIndex = 1;
        }
        if(direction == "right") {
          //duck.removeAttribute("class");
          duck.setAttribute("class","move-right");
+         duck.style.zIndex = 1;
          //duck.style.transform = "none";
        }
 
@@ -71,6 +73,11 @@ function horizontal(direction) {
      setInterval();
    }
    
+   function hidePopup(){
+    const popup = document.querySelector(".popup-container");
+    popup.classList.add("hide-container");
+    horizontal("left");
+}
 
    //-------------------------------------------------------------------------------------
 // function duckMoveHorizontal() {
@@ -151,11 +158,7 @@ function horizontal(direction) {
 //     duck.style.height = "30px";
 // }
 
- function hidePopup(){
-     const popup = document.querySelector(".popup-container");
-     popup.classList.add("hide-container");
-     horizontal("left");
- }
+
 // let tID; 
 // let position = 
 // const  interval = 100; //100 ms of interval for the setInterval()tID = setInterval ( () => {document.getElementById("image").style.backgroundPosition = 

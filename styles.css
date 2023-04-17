@@ -1,17 +1,23 @@
 #mainContainer {
-    background-image: url('sprites/mainBg.png');
+    background-image: url('sprites/sprite main.webp');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     width: 100%;
-    height: 100em;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-position: center;
+    z-index: 3;
 }
 
+body{
+    background-color: rgb(2, 147, 139);
+}
 .duck{
 
     transform: scale(4);
+    z-index: 1;
 }
 
 
@@ -20,6 +26,7 @@
     background: url('sprites/duckHuntSprites.png') no-repeat -130px -121px;
 	width: 34px;
 	height: 24px;
+    z-index: 1;
 }
 
 .popup-container.hide-container{
@@ -40,6 +47,7 @@
     justify-content: center;
     align-items: center;
     padding: 40px;
+    z-index: 4;
 }
 
 .popup-container{
