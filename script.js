@@ -40,14 +40,40 @@ function diagonalUpRightOne(){
 
 function diagonalUpRightTwo(){
     let duck = document.getElementById("duck").style.backgroundPosition = `-171px -158px`;
-    duck.style.width = "25px";
-    duck.style.height = "31px";
+    duck.style.width = "32px";
+    duck.style.height = "29px";
 }
 
 function diagonalUpRightThree(){
     let duck = document.getElementById("duck").style.backgroundPosition = `-213px -157px`;
-    duck.style.width = "25px";
+    duck.style.width = "27px";
     duck.style.height = "31px";
+}
+
+function duckMoveUpl() {
+    setInterval(function() {
+        setTimeout(upTwo, 250);
+        setTimeout(upThree, 500);
+        setTimeout(upOne, 750);
+      }, 1000);
+    }
+
+function upOne(){
+    let duck = document.getElementById("duck").style.backgroundPosition = `-135px -197px`;
+    duck.style.width = "24px";
+    duck.style.height = "31px";
+}
+
+function upTwo(){
+    let duck = document.getElementById("duck").style.backgroundPosition = `-171px -197px`;
+    duck.style.width = "32px";
+    duck.style.height = "31px";
+}
+
+function upThree(){
+    let duck = document.getElementById("duck").style.backgroundPosition = `-212px -198px`;
+    duck.style.width = "30px";
+    duck.style.height = "30px";
 }
 // let tID; 
 // let position = 
