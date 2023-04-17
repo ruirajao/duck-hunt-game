@@ -75,6 +75,12 @@ function upThree(){
     duck.style.width = "30px";
     duck.style.height = "30px";
 }
+
+function hidePopup(){
+    const popup = document.querySelector(".popup-container");
+    popup.classList.add("hide-container");
+    duckMoveRight();
+}
 // let tID; 
 // let position = 
 // const  interval = 100; //100 ms of interval for the setInterval()tID = setInterval ( () => {document.getElementById("image").style.backgroundPosition = 

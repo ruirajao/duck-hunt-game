@@ -22,3 +22,41 @@
 	width: 34px;
 	height: 24px;
 }
+
+.popup-container.hide-container{
+    display: none;
+}
+
+.popup-container .popup{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: whitesmoke;
+    width: 350px;
+    height: 200px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2), 0 0 0 1000px rgba(100, 100, 100, 0.55);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.popup-container{
+    display: flex;
+}
+
+.new-game{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    font-size: 16px;
+    margin-top: auto;
+    margin-bottom: 20px;
+    border-radius: 4px;
+  }
