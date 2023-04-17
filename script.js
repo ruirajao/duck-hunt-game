@@ -1,9 +1,24 @@
 function duckMove() {
+    horizontalRightOne();
 
-let duck = document.getElementById("duck").style.backgroundPosition = `-170px -123px`;
-duck.style.width = "34px";
-duck.style.height = "20px";
+}
 
+function horizontalRightOne(){
+    let duck = document.getElementById("duck").style.backgroundPosition = `-130px -121px`;
+    duck.style.width = "34px";
+    duck.style.height = "20px";
+}
+
+function horizontalRightTwo(){
+    let duck = document.getElementById("duck").style.backgroundPosition = `-170px -123px`;
+    duck.style.width = "34px";
+    duck.style.height = "20px";
+}
+
+function horizontalRightThree(){
+    let duck = document.getElementById("duck").style.backgroundPosition = `-211px -119px`;
+    duck.style.width = "34px";
+    duck.style.height = "20px";
 }
 
 // let tID; 
