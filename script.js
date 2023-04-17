@@ -1,7 +1,10 @@
-function duckMove() {
-    horizontalRightOne();
-
-}
+function duckMoveRight() {
+    setInterval(function() {
+        setTimeout(horizontalRightTwo, 250);
+        setTimeout(horizontalRightThree, 500);
+        setTimeout(horizontalRightOne, 750);
+      }, 1000);
+    }
 
 function horizontalRightOne(){
     let duck = document.getElementById("duck").style.backgroundPosition = `-130px -121px`;
@@ -21,6 +24,31 @@ function horizontalRightThree(){
     duck.style.height = "20px";
 }
 
+function duckMoveRightUpDiagonal() {
+    setInterval(function() {
+        setTimeout(diagonalUpRightTwo, 250);
+        setTimeout(diagonalUpRightThree, 500);
+        setTimeout(diagonalUpRightOne, 750);
+      }, 1000);
+    }
+
+function diagonalUpRightOne(){
+    let duck = document.getElementById("duck").style.backgroundPosition = `-134px -157px`;
+    duck.style.width = "25px";
+    duck.style.height = "31px";
+}
+
+function diagonalUpRightTwo(){
+    let duck = document.getElementById("duck").style.backgroundPosition = `-171px -158px`;
+    duck.style.width = "25px";
+    duck.style.height = "31px";
+}
+
+function diagonalUpRightThree(){
+    let duck = document.getElementById("duck").style.backgroundPosition = `-213px -157px`;
+    duck.style.width = "25px";
+    duck.style.height = "31px";
+}
 // let tID; 
 // let position = 
 // const  interval = 100; //100 ms of interval for the setInterval()tID = setInterval ( () => {document.getElementById("image").style.backgroundPosition = 
