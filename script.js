@@ -1,9 +1,9 @@
 function duckMoveRight() {
     setInterval(function() {
         setTimeout(horizontalRightTwo, 250);
-        setTimeout(horizontalRightThree, 500);
-        setTimeout(horizontalRightOne, 750);
-      }, 1000);
+        setTimeout(horizontalRightThree, 400);
+        setTimeout(horizontalRightOne, 550);
+      }, 500);
     }
 
 function horizontalRightOne(){
@@ -27,9 +27,9 @@ function horizontalRightThree(){
 function duckMoveRightUpDiagonal() {
     setInterval(function() {
         setTimeout(diagonalUpRightTwo, 250);
-        setTimeout(diagonalUpRightThree, 500);
-        setTimeout(diagonalUpRightOne, 750);
-      }, 1000);
+        setTimeout(diagonalUpRightThree, 400);
+        setTimeout(diagonalUpRightOne, 550);
+      }, 500);
     }
 
 function diagonalUpRightOne(){
@@ -50,12 +50,12 @@ function diagonalUpRightThree(){
     duck.style.height = "31px";
 }
 
-function duckMoveUpl() {
+function duckMoveUp() {
     setInterval(function() {
         setTimeout(upTwo, 250);
-        setTimeout(upThree, 500);
-        setTimeout(upOne, 750);
-      }, 1000);
+        setTimeout(upThree, 400);
+        setTimeout(upOne, 550);
+      }, 500);
     }
 
 function upOne(){
