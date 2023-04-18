@@ -2,7 +2,6 @@
 
 
 function horizontal(direction) {
-
  let duck =  document.getElementById("duck");
     if(direction === "left") {
       duck.removeAttribute("class");
@@ -34,11 +33,11 @@ setInterval(() => {
     start();
     setTimeout(() => {
       mid();
-    }, 300);
+    }, 50);
     setTimeout(() => {
       final();
-    }, 600);
-  }, 900);
+    }, 100);
+  }, 150);
 
   setInterval();
 
@@ -48,9 +47,9 @@ setInterval(() => {
 
 function diagonal(x,y) {
  let duck =  document.getElementById("duck");
- //duck.removeAttribute("class");
+//  duck.removeAttribute("class");
 
- switch(x,y) {
+ switch(x) {
   case "right": 
     switch(y){
       case "down":
@@ -61,50 +60,50 @@ function diagonal(x,y) {
         break;
     }
     break; 
-
     case "left":
       switch(y){
         case "down":
           duck.setAttribute('class', 'move-Left-Diagonal-down');
+          duck.style.transform = "scaleX(-1) scaleY(-1)";
           break;
-        
         case "up":
           duck.setAttribute('class', 'move-Left-Diagonal-up');
+          duck.style.transform = "scaleX(-1)";
           break;
       }
       break;
  }
 
- const start =  () => {duck.style.backgroundPosition = `-134px -157px`;
+ let start = (x,y) => {duck.style.backgroundPosition = `-134px -157px`;
+ duck.style.transform = "scaleX(-1)";
  duck.style.width = "25px";
  duck.style.height = "31px";
 }
 
-const mid = () => {duck.style.backgroundPosition = `-171px -158px`;
+let mid = (x,y) => {duck.style.backgroundPosition = `-171px -158px`;
+duck.style.transform = "scaleX(-1)";
+
 duck.style.width = "32px";
 duck.style.height = "29px";
 }
 
-const final = () => {duck.style.backgroundPosition = `-213px -157px`;
+let final = (x,y) => {duck.style.backgroundPosition = `-213px -157px`;
+duck.style.transform = "scaleX(-1)";
 duck.style.width = "27px";
 duck.style.height = "31px";
 }
 
 setInterval(() => {
-    start();
+    start(x,y);
     setTimeout(() => {
-      mid();
+      mid(x,y);
     }, 300);
     setTimeout(() => {
-      final();
+      final(x,y);
     }, 600);
   }, 900);
-
-  setInterval(300);
 }
 
-function main(){
-  diagonal("left", "down");
-}
+
 
 

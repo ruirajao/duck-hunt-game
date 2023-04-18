@@ -18,15 +18,15 @@ body {
 }
 
 .duck{
+  position: relative;
     z-index: 1;
-    transform: scale(4);
-
+    transform: scale(3); 
+    
 }
 
 
 #duck {
     z-index: 2;
-    /* transform: none; */
     background: url('sprites/duckHuntSprites.png') no-repeat -130px -121px;
 	width: 34px;
 	height: 24px;
@@ -34,10 +34,9 @@ body {
 
 
 .move-Up{ 
-
   position: relative;
   animation-name: moveUp;
-  animation-duration: 4s;
+  animation-duration: 3s;
   animation-fill-mode: forwards;
 
 }
@@ -46,7 +45,7 @@ body {
 
     position: relative;
     animation-name: moveRight;
-    animation-duration: 4s;
+    animation-duration: 3s;
     animation-fill-mode: forwards;
 
 }
@@ -54,51 +53,44 @@ body {
 .move-Left{ 
     position: relative;
     animation-name: moveLeft;
-    animation-duration: 4s;
+    animation-duration: 3s;
     animation-fill-mode: forwards;
     
 }
 
-/* .move-Right-Diagonal{ 
 
-} */
-
-/* .move-Left-Diagonal{ 
-    
-} */
 
 .move-Right-Diagonal-up{ 
     position: relative;
     animation-name: moveDRup;
-    animation-duration: 4s;
+    animation-duration: 3s;
     animation-fill-mode: forwards;
 
 }
 
 .move-Left-Diagonal-up{ 
-    transform: scaleX(-1);
+
     position: relative;
     animation-name: moveDLup;
-    animation-duration: 4s;
+    animation-duration: 3s;
     animation-fill-mode: forwards;
     
 }
 
 .move-Right-Diagonal-down{ 
-    transform: scaleY(-1);
+    
     position: relative;
     animation-name: moveDRdown;
-    animation-duration: 4s;
-    animation-fill-mode: forwards;
+    animation-duration: 3s;
+    animation-fill-mode:forwards;
 
 }
 
 .move-Left-Diagonal-down{ 
-    /* transform :scaleY(-1);
-    transform :scaleX(-1); */
+
     position: relative;
     animation-name: moveDLdown;
-    animation-duration: 4s;
+    animation-duration: 3s;
     animation-fill-mode: forwards;
     
 }
@@ -120,7 +112,7 @@ body {
       left: 0;
     }
     100% {
-      left: 200%;
+      left: 500%;
 
     }
   }
@@ -142,7 +134,7 @@ body {
 
     }
     100% {
-      transform: translate(300%, 300%);
+      transform: translate(300%, -300%);
 
     }
 }
@@ -153,7 +145,7 @@ body {
     
         }
         100% {
-          transform: translate(-300%, 300%);
+          transform: translate(-300%, -300%);
     
         }
   }
@@ -162,10 +154,11 @@ body {
   @keyframes moveDRdown {
     0% {
       transform: translate(0, 0);
-
+      
     }
     100% {
-      transform: translate(300%, -300%);
+      transform: translate(300%, 300%);
+
 
     }
 }
@@ -173,13 +166,12 @@ body {
 @keyframes moveDLdown {
     0% {
       transform: translate(0, 0);
-
     }
     100% {
-      transform: translate(-300%, -300%);
-
+      transform: translate(-300%, 300%);
     }
 }
+
   
 
 
