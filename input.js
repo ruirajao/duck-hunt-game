@@ -1,31 +1,94 @@
+const element = document.getElementById('element');
+const container = document.getElementById('mainContainer');
 
-// function printMousePos(event) {
-//   document.getElementById("coord").innerHTML =
-//     "clientX: " + event.clientX + //17px average each side
-//     " - clientY: " + event.clientY;
-// }
+let posX = Math.floor(Math.random() * (container.offsetWidth - 10 + 1)) + 10;
+let posY = 0.75 * container.offsetHeight;
+let vx = 3;
+let vy = 3; // Update with your desired vertical velocity
+
+function getRandomSign() {
+    return Math.random() < 0.5 ? -1 : 1;
+}
+
+let signX = getRandomSign(); // Sign for horizontal velocity
+let signY = -1; // Sign for vertical velocity (always up)
+
+let counter = 0;
+function animateElement() {
+    // Update the position based on velocity
+    
+    if (counter === 0) {
+        posX = posX + vx * signX;
+        posY = posY + vy * signY;
+
+        //Diagonal up right
+        if (vx * signX > 0) {
+            element.style.backgroundImage = 'url("sprites/duck/flyrightup.gif")';
+        }
+
+        //Diagonal up left
+        if (vx * signX < 0) {
+            element.style.backgroundImage = 'url("sprites/duck/flyleftup.gif")';
+        }
+    }
+
+    if (counter > 0) {
+        posX = posX + vx * signX;
+        posY = posY + vy * signY;
+    }
 
 
-// function printBird(event){
+    //Diagonal down right
+    if (vx * signX > 0 && vy * signY > 0) {
+        element.style.backgroundImage = 'url("sprites/duck/flyrightdown.gif")';
+    }
 
-// }
-// let duck = document.getElementById("duck");
-// duck.addEventListener('mousedown',printBird);
+    //Diagonal up right
+    if (vx * signX > 0 && vy * signY < 0) {
+        element.style.backgroundImage = 'url("sprites/duck/flyrightup.gif")';
+    }
 
-// document.addEventListener("click", printMousePos);
+    //Diagonal down left
+    if (vx * signX < 0 && vy * signY > 0) {
+        element.style.backgroundImage = 'url("sprites/duck/flyleftdown.gif")';
+    }
+
+    //Diagonal up left
+    if (vx * signX < 0 && vy * signY < 0) {
+        element.style.backgroundImage = 'url("sprites/duck/flyleftup.gif")';
+    }
 
 
-// function getCursorPos(event) {
-//   let x = event.clientX;
-//   let y = event.clientY;
-//   let xRange = [x - 17, x + 17];
-//   let yRange = [y - 12, y + 12];
-//   return [xRange, yRange];
-// }
+    // Get container dimensions
+    const containerWidth = container.offsetWidth;
+    const containerHeight = container.offsetHeight;
 
+    // Get element dimensions
+    const elementWidth = element.offsetWidth;
+    const elementHeight = element.offsetHeight;
 
-// document.addEventListener("click", function(event) {
-//   let cursorPos = getCursorPos(event);
-//   console.log("X Range: " + cursorPos[0]);
-//   console.log("Y Range: " + cursorPos[1]);
-// });
+    // Check for collision with container's left or right edge
+    if (posX < 0 || posX + elementWidth > containerWidth) {
+        signX *= -1; // Reverse horizontal velocity
+    }
+
+    // Check for collision with container's top or bottom edge
+    if (posY < 0 || posY + elementHeight > containerHeight) {
+        vy *= -1; // Reverse vertical velocity
+    }
+
+    // Apply the updated position
+    element.style.top = `${posY}px`;
+    element.style.left = `${posX}px`;
+
+    counter++;
+
+    // Call the animation function again in the next frame
+    requestAnimationFrame(animateElement);
+}
+
+// Call the animation function initially
+animateElement();
+
+// Add event listener to container to trigger animation on click
+// container.addEventListener('click', animateSpawn());
