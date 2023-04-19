@@ -1,3 +1,15 @@
+const field = require('./field.js'); 
+
+class Duck {
+
+
+  constructor() {
+    this.isAlive = true;
+    this.duckheight = 25% * field.
+    this.duckWidth = Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+}
+
 
 
 
@@ -40,14 +52,13 @@ setInterval(() => {
   }, 150);
 
   setInterval();
-
 }
 
 
 
 function diagonal(x,y) {
  let duck =  document.getElementById("duck");
-//  duck.removeAttribute("class");
+ duck.removeAttribute("class");
 
  switch(x) {
   case "right": 
@@ -64,45 +75,68 @@ function diagonal(x,y) {
       switch(y){
         case "down":
           duck.setAttribute('class', 'move-Left-Diagonal-down');
-          duck.style.transform = "scaleX(-1) scaleY(-1)";
           break;
         case "up":
           duck.setAttribute('class', 'move-Left-Diagonal-up');
-          duck.style.transform = "scaleX(-1)";
           break;
       }
       break;
  }
 
- let start = (x,y) => {duck.style.backgroundPosition = `-134px -157px`;
- duck.style.transform = "scaleX(-1)";
- duck.style.width = "25px";
- duck.style.height = "31px";
+const start = () => {duck.style.backgroundPosition = `-134px -157px`;
+duck.style.width = "25px";
+duck.style.height = "31px";
 }
 
-let mid = (x,y) => {duck.style.backgroundPosition = `-171px -158px`;
-duck.style.transform = "scaleX(-1)";
-
+const mid = () => {duck.style.backgroundPosition = `-171px -158px`;
 duck.style.width = "32px";
 duck.style.height = "29px";
 }
 
-let final = (x,y) => {duck.style.backgroundPosition = `-213px -157px`;
-duck.style.transform = "scaleX(-1)";
+const final = () => {duck.style.backgroundPosition = `-213px -157px`;
 duck.style.width = "27px";
 duck.style.height = "31px";
 }
 
 setInterval(() => {
-    start(x,y);
+    start();
     setTimeout(() => {
-      mid(x,y);
-    }, 300);
+      mid();
+    }, 100);
     setTimeout(() => {
-      final(x,y);
-    }, 600);
-  }, 900);
+      final();
+    }, 200);
+  }, 300);
 }
+
+
+function moveDown() {
+  // duck.removeAttribute("class");
+  duck.setAttribute('class','move-Down')
+
+  const start = () => {
+  duck.style.backgroundPosition = `-131px -238px`;
+	duck.style.width =  "31px";
+	duck.style.height = "29px";
+  }
+
+  const final = () => {
+  duck.style.backgroundPosition = `-178px -237px`;
+	duck.style.width =  "18px";
+	duck.style.height = "30px";
+  }
+
+  start();
+
+  setTimeout(() => {
+    duck.removeAttribute("style");
+    setInterval(() => {
+      final();
+    }, 5);
+  }, 300);
+}
+
+
 
 
 

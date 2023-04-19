@@ -1,20 +1,23 @@
-body {
-    background-color: lightskyblue;
-    z-index: -2;
+body { position: relative;
+  background-color: lightskyblue;
+  z-index: -2;
 }
+
 
 
 #mainContainer {
     z-index: 3;
     background-image: url('sprites/sprite main.webp');
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 100% 100%;
+    background-position: contain;
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-position: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .duck{
@@ -33,12 +36,26 @@ body {
 }
 
 
+.coordinates {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+
 .move-Up{ 
   position: relative;
   animation-name: moveUp;
   animation-duration: 3s;
   animation-fill-mode: forwards;
 
+}
+
+.move-Down {
+  position: relative;
+  animation-name: moveDown;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
 }
 
 .move-Right{ 
@@ -69,7 +86,6 @@ body {
 }
 
 .move-Left-Diagonal-up{ 
-
     position: relative;
     animation-name: moveDLup;
     animation-duration: 3s;
@@ -78,7 +94,6 @@ body {
 }
 
 .move-Right-Diagonal-down{ 
-    
     position: relative;
     animation-name: moveDRdown;
     animation-duration: 3s;
@@ -87,7 +102,6 @@ body {
 }
 
 .move-Left-Diagonal-down{ 
-
     position: relative;
     animation-name: moveDLdown;
     animation-duration: 3s;
@@ -105,6 +119,47 @@ body {
 
     }
   
+  }
+
+
+
+  @keyframes moveDown {
+    0% {
+      top: 0;
+      transform: scaleX(-1);
+    }
+    10% {
+      transform: scaleX(1);
+    }
+    20% {
+      transform: scaleX(-1); 
+    }
+    30% {
+      transform: scaleX(1); 
+    }
+    40% {
+
+      transform: scaleX(-1);
+    }
+    50% {
+      transform: scaleX(1);
+    }
+    60% {
+      transform: scaleX(-1); 
+    }
+    70% {
+      transform: scaleX(1); 
+    }
+    80% {
+      transform: scaleX(-1); 
+    }
+    90% {
+      transform: scaleX(1); 
+    }
+    100% {
+      top: 240%;
+      transform: scaleX(-1);
+    }
   }
   
   @keyframes moveRight {
@@ -141,11 +196,11 @@ body {
 
     @keyframes moveDLup {
         0% {
-          transform: translate(0, 0);
+          transform: translate(0, 0) scaleX(-1);
     
         }
         100% {
-          transform: translate(-300%, -300%);
+          transform: translate(-300%, -300%) scaleX(-1);
     
         }
   }
@@ -165,10 +220,11 @@ body {
 
 @keyframes moveDLdown {
     0% {
-      transform: translate(0, 0);
+      transform: translate(0, 0) scaleX(-1);
+      
     }
     100% {
-      transform: translate(-300%, 300%);
+      transform: translate(-300%, 300%) scaleX(-1);
     }
 }
 
