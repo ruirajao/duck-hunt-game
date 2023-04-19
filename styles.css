@@ -1,12 +1,12 @@
-body { position: relative;
+body { 
+  position: relative;
   background-color: lightskyblue;
-  z-index: -2;
+  z-index:0;
 }
 
 
 
 #mainContainer {
-    z-index: 3;
     background-image: url('sprites/sprite main.webp');
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -18,6 +18,7 @@ body { position: relative;
     align-items: center;
     position: relative;
     overflow: hidden;
+    z-index: 2;
 }
 
 #element {
@@ -27,9 +28,9 @@ body { position: relative;
   background-size: 100%;
   /* background-color: blue; */
   position: absolute;
-  top: 50;
-  left: 50;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   transition: transform 0.5s ease;
-
+  z-index: 1;
 }
