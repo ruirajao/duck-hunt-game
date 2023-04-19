@@ -20,6 +20,10 @@ body { position: relative;
     overflow: hidden;
 }
 
+.disable-shooting {
+  pointer-events: none;
+}
+
 .duck{
   position: relative;
     z-index: 1;
@@ -33,6 +37,14 @@ body { position: relative;
     background: url('sprites/duckHuntSprites.png') no-repeat -130px -121px;
 	width: 34px;
 	height: 24px;
+}
+
+
+.duck1 {
+  z-index: 2;
+  background: url('sprites/duckHuntSprites.png') no-repeat -130px -121px;
+width: 34px;
+height: 24px;
 }
 
 
@@ -178,7 +190,7 @@ body { position: relative;
       right: 0;
     }
     100% {
-      right: 500%;
+      right: 1000%;
 
     }
   }

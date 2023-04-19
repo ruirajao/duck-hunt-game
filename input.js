@@ -1,16 +1,16 @@
 
-function printMousePos(event) {
-  document.getElementById("coord").innerHTML =
-    "clientX: " + event.clientX + //17px average each side
-    " - clientY: " + event.clientY;
-}
+// function printMousePos(event) {
+//   document.getElementById("coord").innerHTML =
+//     "clientX: " + event.clientX + //17px average each side
+//     " - clientY: " + event.clientY;
+// }
 
 
 // function printBird(event){
 
 // }
 // let duck = document.getElementById("duck");
-duck.addEventListener('mousedown',printBird);
+// duck.addEventListener('mousedown',printBird);
 
 // document.addEventListener("click", printMousePos);
 
