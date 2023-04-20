@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,18 +8,21 @@
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <div id="mainContainer">
-    <div class="duck">
-        <p id="duck"></p>
-    </div>
-    </div>
-    <div class="popup-container" id="popup-container">
-        <div class="popup" id="popup">
-            <h2>DUCK HUNT</h2>
-            <button class="new-game" id="new-game" onclick="hidePopup()">NEW GAME</button>
+    <button id="playButton">Play</button>
+    
+
+    <div id="field-container">
+        <div id="duck-container">
+            <!-- DUCKS WILL BE HERE -->
         </div>
+
+        <div id="coord" class="coordinates"></div>
     </div>
-    <script src="JavaScript/duck.js"></script> 
+
+    <script src="duck.js"></script>
+    <script src="main.js"></script>
 </body>
+
 </html>
