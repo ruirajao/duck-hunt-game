@@ -1,8 +1,83 @@
 body {
   position: relative;
   background-color: lightskyblue;
+  background-image: url("/sprites/rain.gif");
+  background-size: contain;
+  background-repeat: no-repeat;
   z-index: 0;
+  margin: 0;
+  overflow: hidden;
 }
+
+#crosshair {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  /* Make sure the crosshair does not interfere with mouse events */
+  width: 32px;
+  /* Set the size of the crosshair image */
+  height: 32px;
+  background-image: url("/sprites/crosshair.png");
+  /* Replace with the path to your crosshair image */
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 9999;
+  /* Make sure the crosshair appears on top of other elements */
+  transform: translate(-50%, -50%);
+  /* Center the crosshair image */
+}
+
+#block {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  /* Make sure the crosshair does not interfere with mouse events */
+  width: 32px;
+  /* Set the size of the crosshair image */
+  height: 32px;
+  background-image: url("/sprites/block.png");
+  /* Replace with the path to your crosshair image */
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 9999;
+  /* Make sure the crosshair appears on top of other elements */
+  transform: translate(-50%, -50%);
+  /* Center the crosshair image */
+}
+
+/* Style the pistol standby sprite */
+#pistol-standby {
+  background-image: url('sprites/pistol/pistol_standby.png'); /* Replace with the URL or file path of your pistol standby sprite */
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 20%; /* Set the width of the sprite */
+  height: 20%; /* Set the height of the sprite */
+  position: absolute;
+  bottom: 0; /* Position the sprite at the bottom of the screen */
+  left: 50%; /* Position the sprite horizontally centered */
+  transform: translateX(-50%); /* Center the sprite horizontally using transform */
+  z-index: 3; /* Set the z-index to ensure the sprite is on top of other elements */
+  
+}
+
+/* Style the pistol shoot sprite */
+#pistol-shoot {
+  background-image: url('sprites/pistol/pistol_shoot.png'); /* Replace with the URL or file path of your pistol shoot sprite */
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 20%; /* Set the width of the sprite */
+  height: 20%; /* Set the height of the sprite */
+  position: absolute;
+  bottom: 0; /* Position the sprite at the bottom of the screen */
+  left: 50%; /* Position the sprite horizontally centered */
+  transform: translateX(-50%); /* Center the sprite horizontally using transform */
+  z-index: 4; /* Set the z-index to ensure the sprite is on top of other elements, including the pistol standby sprite */
+}
+
+
+
 
 #field-container {
   background-image: url('sprites/sprite main.webp');
@@ -19,6 +94,9 @@ body {
   pointer-events: none;
   z-index: 2;
 }
+
+
+
 
 #duck-container {
   pointer-events: all;

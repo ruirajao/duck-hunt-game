@@ -5,7 +5,7 @@ class Duck {
         this.vy;
     }
 
-    spawnDuck() {
+    spawnDuck(v) {
         const fieldContainer = document.getElementById('field-container');
         const duckContainer = document.getElementById('duck-container');
         const duckElement = document.createElement('div');
@@ -14,8 +14,8 @@ class Duck {
 
         let posX = Math.floor(Math.random() * (fieldContainer.offsetWidth - 10 + 1)) + 10;
         let posY = 0.75 * fieldContainer.offsetHeight;
-        let vx = 2;
-        let vy = 2; // Update with your desired vertical velocity
+        let vx = v;
+        let vy = v; // Update with your desired vertical velocity
         let signX = getRandomSign(); // Sign for horizontal velocity
         let signY = -1; // Sign for vertical velocity (always up)
         let counter = 0;
