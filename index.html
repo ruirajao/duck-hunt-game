@@ -10,12 +10,20 @@
 </head>
 
 <body>
-    <div id="boardContainer">
+    <button id="playButton" onclick="spawnDuck()">Play</button>
+    <div id="fieldContainer">
+
         <div id="coord" class="coordinates"></div>
     </div>
+
+    <div id="duck-container">
+        <!-- DUCKS WILL BE HERE -->
+        <p id="duck"></p>
+    </div>
+
     
-    <p id="duck" onclick="animateDuck()"></p>
-    
+
+
     <script src="duck.js"></script>
     <script src="dog.js"></script>
     <script src="field.js"></script>

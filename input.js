@@ -1,5 +1,8 @@
+function spawnDuck() {
 const element = document.getElementById('duck');
-const container = document.getElementById('boardContainer');
+const container = document.getElementById('fieldContainer');
+
+
 
 let posX = Math.floor(Math.random() * (container.offsetWidth - 10 + 1)) + 10;
 let posY = 0.75 * container.offsetHeight;
@@ -74,6 +77,8 @@ function animateElement() {
     // Check for collision with container's top or bottom edge
     if (posY < 0 || posY + elementHeight > containerHeight) {
         vy *= -1; // Reverse vertical velocity
+        console.log("passou aqui");
+        console.log(vy);
     }
 
     // Apply the updated position
@@ -91,3 +96,4 @@ animateElement();
 
 // Add event listener to container to trigger animation on click
     // container.addEventListener('click', animateSpawn());
+}
