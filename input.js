@@ -1,10 +1,10 @@
-const element = document.getElementById('element');
-const container = document.getElementById('mainContainer');
+const element = document.getElementById('duck');
+const container = document.getElementById('boardContainer');
 
 let posX = Math.floor(Math.random() * (container.offsetWidth - 10 + 1)) + 10;
 let posY = 0.75 * container.offsetHeight;
-let vx = 3;
-let vy = 3; // Update with your desired vertical velocity
+let vx = 2;
+let vy = 2; // Update with your desired vertical velocity
 
 function getRandomSign() {
     return Math.random() < 0.5 ? -1 : 1;
@@ -16,7 +16,6 @@ let signY = -1; // Sign for vertical velocity (always up)
 let counter = 0;
 function animateElement() {
     // Update the position based on velocity
-    
     if (counter === 0) {
         posX = posX + vx * signX;
         posY = posY + vy * signY;
@@ -91,4 +90,4 @@ function animateElement() {
 animateElement();
 
 // Add event listener to container to trigger animation on click
-// container.addEventListener('click', animateSpawn());
+    // container.addEventListener('click', animateSpawn());
