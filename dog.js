@@ -39,11 +39,6 @@ class Dog {
         } else {
             this.dogElement.classList.add('gotTwo');
         }
-
-
-
-
-
     }
 
     showDogLaugh() {
