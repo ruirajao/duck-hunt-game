@@ -4,9 +4,7 @@ body {
   z-index:0;
 }
 
-
-
-#fieldContainer {
+#field-container {
     background-image: url('sprites/sprite main.webp');
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -18,15 +16,14 @@ body {
     align-items: center;
     position: relative;
     overflow: hidden;
-    z-index: 2;
+    z-index: 1;
 }
 
 #duck-container {
-  background-color: black;
-  z-index: 1;
+  z-index: 2;
 }
 
-#duck {
+.duck {
   width: 78px;
   height: 73px;
   background-image: url('sprites/duck/flyrightup.gif');
@@ -37,5 +34,6 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   transition: transform 0.5s ease;
-  
 }
+
+
