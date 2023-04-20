@@ -1,26 +1,28 @@
-body { 
+body {
   position: relative;
   background-color: lightskyblue;
-  z-index:0;
+  z-index: 0;
 }
 
 #field-container {
-    background-image: url('sprites/sprite main.webp');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-position: contain;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
+  background-image: url('sprites/sprite main.webp');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: contain;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
 }
 
 #duck-container {
-  z-index: 2;
+  pointer-events: all;
+  z-index: 1;
 }
 
 .duck {
@@ -36,4 +38,191 @@ body {
   transition: transform 0.5s ease;
 }
 
+/* .dog {
+  width: 10vw;
+  height: 6vw;
+  z-index: 3;
+  left: 0%;
+  bottom: 20%;
+  background-image: url("sprites/dog/dogeWalking.gif");
+} */
 
+#dog1 {
+  position: absolute;
+  width: 10vw;
+  height: 9vw;
+  z-index: 3;
+  left: 0%;
+  bottom: 10%;
+  background-image: url("sprites/dog/dogeWalking.gif");
+  background-size: 100%;
+  background-repeat: no-repeat;
+
+  animation-name: dogMoveAnimation;
+  animation-duration: 3.3s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+}
+
+@keyframes dogMoveAnimation {
+  0% {
+    left: 0%;
+  }
+
+  100% {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+#dog1.found {
+  left: 50%;
+  background-image: url("sprites/dog/found.png");
+  animation-name: dogFoundAnimation;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+}
+
+#dog1.found.jump {
+  left: 50%;
+  background-image: url("sprites/dog/pawelJumper.gif");
+  background-size: contain;
+  animation-name: dogJumpAnimation;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+}
+
+@keyframes dogJumpAnimation {
+  0% {
+    bottom: 10%
+  }
+
+  50% {
+    transform: scale(50%);
+    bottom: 30%;
+  }
+
+  90% {
+    transform: scale(25%);
+    bottom: 10%;
+    opacity: 70%;
+  }
+
+  100% {
+    transform: scale(1%);
+    bottom: 10%;
+    opacity: 0%;
+  }
+}
+
+
+
+#dog-container {
+  z-index: 1
+}
+
+#dog2.gotOne {
+  position: absolute;
+  width: 10vw;
+  height: 8vw;
+  left: 48%;
+  bottom: 10%;
+  background-image: url("sprites/dog/gotOne.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  animation-name: dogGotOneAnimation;
+  animation-duration: 3s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  transform: scale(120%)
+}
+
+@keyframes dogGotOneAnimation {
+  0% {
+    bottom: 0%;
+  }
+
+  30% {
+    bottom: 26%
+  }
+
+  60% {
+    bottom: 26%
+  }
+
+  100% {
+    bottom: 0%
+  }
+}
+
+#dog2.gotTwo {
+  position: absolute;
+  width: 10vw;
+  height: 8vw;
+  left: 48%;
+  bottom: 10%;
+  background-image: url("sprites/dog/gotTwo.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  animation-name: dogGotTwoAnimation;
+  animation-duration: 3s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  transform: scale(120%)
+}
+
+@keyframes dogGotTwoAnimation {
+  0% {
+    bottom: 0%;
+  }
+
+  30% {
+    bottom: 26%
+  }
+
+  60% {
+    bottom: 26%
+  }
+
+  100% {
+    bottom: 0%
+  }
+}
+
+
+
+#dog2.laugh {
+  position: absolute;
+  width: 10vw;
+  height: 8vw;
+  left: 48%;
+  bottom: 10%;
+  background-image: url("sprites/dog/dogLaugh.gif");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  animation-name: dogLaughAnimation;
+  animation-duration: 3s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  transform: scale(120%);
+}
+
+@keyframes dogLaughAnimation {
+  0% {
+    bottom: 0%;
+  }
+
+  30% {
+    bottom: 26%
+  }
+
+  60% {
+    bottom: 26%
+  }
+
+  100% {
+    bottom: 0%
+  }
+}
