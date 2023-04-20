@@ -108,7 +108,7 @@ class Duck {
                 setTimeout(function () {
                     duckElement.style.backgroundImage = 'url("sprites/duck/falling.gif")';
                     vy = -2;
-                    
+
 
                 }, 500);
             });
