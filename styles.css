@@ -398,8 +398,6 @@ body {
   animation-duration: 3s;
   animation-iteration-count: 1;
   animation-timing-function: linear;
-  font-size: 200%;
-  z-index: 5;
   font-size: 800%;
   font-family: PixelFont;
 }

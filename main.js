@@ -8,26 +8,19 @@ function createDuck() {
     ducky.spawnDuck(2);
     ducky.spawnDuck(2);
     ducky.spawnDuck(2);
-
     let dog1 = new Dog("dog1");
     dog1.launchWalkoutAnimation();
     console.log("doggy1");
-
     let dog2 = new Dog("dog2");
     // dog2.showDogWithKilledDucks(1);
-
     // dog2.showDogWithKilledDucks(2);
-
     //dog2.showDogLaugh();
-
     let alreadyKilledOne = false;
-
     function checkKills() {
         if (Duck.kills === 1 && !alreadyKilledOne) {
             dog2.showDogWithKilledDucks(1);
             alreadyKilledOne = true;
         }
-
         if (Duck.kills === 3) {
             ducky.spawnDuck(1);
             ducky.spawnDuck(1);
@@ -38,7 +31,6 @@ function createDuck() {
         }
         console.log("teste");
     }
-
     checkKills(); // Start checking for the condition
 }
 */
@@ -127,25 +119,26 @@ function play1() {
     }
 }
 
-function play () {
+function play() {
 
     startGame();
 
     function startGame() {
         console.log("-----startGame method-----");
         sniffDog.launchWalkoutAnimation();
-        displayGameStartingTimer(5);
-        setTimeout(() => startNewRound(roundsCounter),3000);
+        displayGameStartingTimer(3);
+        setTimeout(() => startNewRound(roundsCounter),4000);
     }
 
     function startNewRound(VARroundsCounter) {
-        displayRoundNumber();
-        setCountDownToEndWave();
-        displayCountDownToEndWave();
+        console.log("-----Start New Round method-----");
+        displayRoundNumber(VARroundsCounter);
+        //setCountDownToEndWave();
+        //displayCountDownToEndWave();
 
-        displayRoundTitle();
-        resetAmmo();
-        enableShooting();
+        //displayRoundTitle();
+        //resetAmmo();
+        //enableShooting();
     }
 }
 
@@ -178,9 +171,14 @@ function displayGameStartingTimer(seconds) {
 }
 
 
-function displayRoundNumber() {
+function displayRoundNumber(VARroundsCounter) {
+    console.log("oh bro")
     roundNumberContainer = document.getElementById('round-number-display');
-    roundNumberContainer.textContent = `ROUND ${roundsCounter}`;
+    roundElement = document.createElement('div');
+    roundElement.setAttribute("id","round-element");
+    roundElement.textContent =  `ROUND ${VARroundsCounter}`;
+    roundNumberContainer.appendChild(roundElement);
+    console.log("oh bro 2")
 }
 
 
@@ -194,17 +192,14 @@ let endTime; // Define endTime outside of the function
 function startTimer(seconds) {
     const fieldContainer = document.getElementById('field-container');
     endTime = Date.now() + (seconds * 1000); // Calculate the target end time
-
     // Create a timer element and append it to the DOM
     const timerElement = document.createElement('div');
     timerElement.setAttribute('id', 'timer');
     fieldContainer.appendChild(timerElement);
-
     // Function to update the timer element
     const updateTimer = () => {
         const currentTime = Date.now();
         const timeLeft = Math.ceil((endTime - currentTime) / 1000);
-
         if (timeLeft > 0) {
             timerElement.textContent = `Time Left: ${timeLeft} seconds`;
             setTimeout(updateTimer, 1000); // Update timer every second
@@ -239,4 +234,3 @@ function showBullets(){
         bullet.play();
     });
 }
-
