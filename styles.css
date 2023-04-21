@@ -1,7 +1,7 @@
 body {
   position: relative;
   background-color: lightskyblue;
-  background-image: url("/sprites/rain.gif");
+  /* background-image: url("/sprites/stars.gif"); */
   background-size: cover;
   background-repeat: no-repeat;
   z-index: 0;

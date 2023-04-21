@@ -6,39 +6,6 @@ let pistolShootContainer = document.getElementById('pistol-shoot');
 const duckContainer = document.getElementById('duck-container');
 
 
-/*
-function createDuck() {
-    let ducky = new Duck();
-    ducky.spawnDuck(2);
-    ducky.spawnDuck(2);
-    ducky.spawnDuck(2);
-    let dog1 = new Dog("dog1");
-    dog1.launchWalkoutAnimation();
-    console.log("doggy1");
-    let dog2 = new Dog("dog2");
-    // dog2.showDogWithKilledDucks(1);
-    // dog2.showDogWithKilledDucks(2);
-    //dog2.showDogLaugh();
-    let alreadyKilledOne = false;
-    function checkKills() {
-        if (Duck.kills === 1 && !alreadyKilledOne) {
-            dog2.showDogWithKilledDucks(1);
-            alreadyKilledOne = true;
-        }
-        if (Duck.kills === 3) {
-            ducky.spawnDuck(1);
-            ducky.spawnDuck(1);
-            ducky.spawnDuck(1);
-            console.log("MAIS 3");
-        } else {
-            setTimeout(checkKills, 2000); // Check again after 1 second
-        }
-        console.log("teste");
-    }
-    checkKills(); // Start checking for the condition
-}
-*/
-
 let bulletCounter = 3;
 let maxRounds = 3;
 let roundsCounter = 1;
@@ -59,70 +26,6 @@ let isRoundFinished = false;
 
 //startWithBlockCrosshair!
 
-function play1() {
-    const startTimerElement = document.getElementById("start-timer");
-    startTimerElement.style.display = "block";
-    setTimeout(() => {
-        startTimerElement.style.display = "none";
-        startTimer(10);
-        showBullets();
-        freeDucks();
-    }, 4000);
-
-    sniffDog.launchWalkoutAnimation();
-    //setTimeOut(); for animation
-    //displayDivRound(roundCounter);
-    //unlockCrosshair();
-
-    function freeDucks() {
-        for (let i = 0; i < startingDucks; i++) {
-            duckHandler.spawnDuck(velocity);
-        }
-        const audio = new Audio("audio/duck-flapping.mp3")
-        audio.play();
-    }
-
-
-    function checkRoundCounter() {
-        if (waveCounter === 3) {
-            isRoundFinished = true;
-            roundCounter++;
-        } else {
-            setTimeout(checkWaveFinish, 2000); // Check again after 2 second
-        }
-    }
-
-    function checkWaveFinish() {
-        if (Duck.kills === startingDucks) {
-            waveCounter++;
-            isWaveFinished = true;
-            Duck.kills = 0;
-            freeDucks();
-            console.log("Wave counter:" + waveCounter);
-        } else {
-            setTimeout(checkWaveFinish, 1000); // Check again after 1 second
-        }
-    }
-
-    function callDog() {
-        if (Duck.kills === 1) {
-            catchAndLaughDog.showDogWithKilledDucks(1)
-        } else {
-            setTimeout(checkWaveFinish, 1000); // Check again after 1 second
-        }
-
-
-    }
-
-    checkWaveFinish();
-    checkRoundCounter();
-
-    if (isRoundFinished) {
-        resetAllStats();
-        startNewRound();
-    }
-}
-
 function play() {
 
     startGame();
@@ -141,17 +44,6 @@ function play() {
         (roundsCounter > 1) ? displayRoundNumber(roundsCounter) : "Let's go";
         waveCounter = 1;
         startWaves();
-
-
-
-
-        //setTimeout(() => startNewRound(roundsCounter),4000);
-        //setCountDownToEndWave();
-        //displayCountDownToEndWave();
-
-        //displayRoundTitle();
-        //resetAmmo();
-        //enableShooting();
     }
 
     function startWaves() {
@@ -243,6 +135,7 @@ function displayGameStartingTimer(seconds) {
     updateTimer(); // Start the timer
 }
 
+//WAVE TIMER
 let waveEndTimer;
 const waveTimeContainer = document.getElementById('wave-time-left');
 const timerElement = document.createElement('div');
@@ -286,38 +179,7 @@ function displayRoundNumber(roundCounter) {
 }
 
 
-
-
-
-
-
-/*
-let endTime; // Define endTime outside of the function
-function startTimer(seconds) {
-    const fieldContainer = document.getElementById('field-container');
-    endTime = Date.now() + (seconds * 1000); // Calculate the target end time
-    // Create a timer element and append it to the DOM
-    const timerElement = document.createElement('div');
-    timerElement.setAttribute('id', 'timer');
-    fieldContainer.appendChild(timerElement);
-    // Function to update the timer element
-    const updateTimer = () => {
-        const currentTime = Date.now();
-        const timeLeft = Math.ceil((endTime - currentTime) / 1000);
-        if (timeLeft > 0) {
-            timerElement.textContent = `Time Left: ${timeLeft} seconds`;
-            setTimeout(updateTimer, 1000); // Update timer every second
-        } else {
-            timerElement.textContent = 'Time is up!';
-        }
-    };
-    updateTimer(); // Start the timer
-}*/
-
-
-
-
-
+// TODO: This should be a updateDisplayBullets
 function showBullets() {
     const bulletCounterElement = document.getElementById("bullet-counter");
     const bullet1Cover = document.querySelector(".bullet1-cover");

@@ -28,7 +28,6 @@ class Dog {
         });
     }
 
-
     showDogWithKilledDucks(killedDucks) {
         this.dogElement.setAttribute("id", this.dogId);
         this.dogContainer.appendChild(this.dogElement);
