@@ -80,6 +80,8 @@ function play() {
         for (let i = 0; i < maxWaves; i++) {
             duckHandler.spawnDuck(velocity);
         }
+    var audio = new Audio(audio/duck-flapping.mp3)
+    audio.play();
     }
     freeDucks();
 
