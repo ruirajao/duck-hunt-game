@@ -127,25 +127,26 @@ function play1() {
     }
 }
 
-function play () {
+function play() {
 
     startGame();
 
     function startGame() {
         console.log("-----startGame method-----");
         sniffDog.launchWalkoutAnimation();
-        displayGameStartingTimer(5);
-        setTimeout(() => startNewRound(roundsCounter),3000);
+        displayGameStartingTimer(3);
+        setTimeout(() => startNewRound(roundsCounter),4000);
     }
 
     function startNewRound(VARroundsCounter) {
-        displayRoundNumber();
-        setCountDownToEndWave();
-        displayCountDownToEndWave();
+        console.log("-----Start New Round method-----");
+        displayRoundNumber(VARroundsCounter);
+        //setCountDownToEndWave();
+        //displayCountDownToEndWave();
 
-        displayRoundTitle();
-        resetAmmo();
-        enableShooting();
+        //displayRoundTitle();
+        //resetAmmo();
+        //enableShooting();
     }
 }
 
@@ -178,9 +179,14 @@ function displayGameStartingTimer(seconds) {
 }
 
 
-function displayRoundNumber() {
+function displayRoundNumber(VARroundsCounter) {
+    console.log("oh bro")
     roundNumberContainer = document.getElementById('round-number-display');
-    roundNumberContainer.textContent = `ROUND ${roundsCounter}`;
+    roundElement = document.createElement('div');
+    roundElement.setAttribute("id","round-element");
+    roundElement.textContent =  `ROUND ${VARroundsCounter}`;
+    roundNumberContainer.appendChild(roundElement);
+    console.log("oh bro 2")
 }
 
 
