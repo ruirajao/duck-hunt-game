@@ -1,11 +1,12 @@
 
 class Duck {
-    constructor() {
-        this.vx;
-        this.vy;
+    static kills = 0;
+    
+    constructor() { 
+  
     }
 
-    spawnDuck(v) {
+    spawnDuck(velocity) {
         const fieldContainer = document.getElementById('field-container');
         const duckContainer = document.getElementById('duck-container');
         const duckElement = document.createElement('div');
@@ -14,8 +15,8 @@ class Duck {
 
         let posX = Math.floor(Math.random() * (fieldContainer.offsetWidth - 10 + 1)) + 10;
         let posY = 0.75 * fieldContainer.offsetHeight;
-        let vx = v;
-        let vy = v; // Update with your desired vertical velocity
+        let vx = velocity;
+        let vy = velocity; // Update with your desired vertical velocity
         let signX = getRandomSign(); // Sign for horizontal velocity
         let signY = -1; // Sign for vertical velocity (always up)
         let counter = 0;
@@ -82,7 +83,7 @@ class Duck {
             }
 
             // Check for collision with container's top or bottom edge
-            if (posY < 0 || posY + elementHeight > containerHeight) {
+            if (posY < 0 || posY + elementHeight > containerHeight || posY > 0.76 * fieldContainer.offsetHeight) {
                 vy *= -1; // Reverse vertical velocity
             }
 
@@ -117,9 +118,10 @@ class Duck {
         function checkAndRemoveDuck() {
             let rect = duckElement.getBoundingClientRect(); // Get the current position of the duck element
             console.log
-            if (rect.bottom > fieldContainer.offsetHeight - 150) { // Check if the top of the duck element is beyond the bottom of the screen
+            if (rect.bottom > fieldContainer.offsetHeight - 200) { // Check if the top of the duck element is beyond the bottom of the screen
                 duckElement.remove(); // Remove the duck element from the DOM
-                console.log("fieldContainer.offsetHeight-200:" + fieldContainer.offsetHeight - 200);
+                Duck.kills++;
+                console.log(Duck.kills);    
                 console.log("fieldContainer.offsetHeight:" + fieldContainer.offsetHeight);
                 console.log("passei aqui")
             } else {

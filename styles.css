@@ -2,11 +2,12 @@ body {
   position: relative;
   background-color: lightskyblue;
   background-image: url("/sprites/rain.gif");
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   z-index: 0;
   margin: 0;
   overflow: hidden;
+  cursor: none;
 }
 
 #crosshair {
@@ -131,7 +132,7 @@ body {
   height: 9vw;
   z-index: 3;
   left: 0%;
-  bottom: 10%;
+  bottom: 8%;
   background-image: url("sprites/dog/dogeWalking.gif");
   background-size: 100%;
   background-repeat: no-repeat;
@@ -276,7 +277,7 @@ body {
   width: 10vw;
   height: 8vw;
   left: 48%;
-  bottom: 10%;
+  bottom: 8%;
   background-image: url("sprites/dog/dogLaugh.gif");
   background-size: 100%;
   background-repeat: no-repeat;
