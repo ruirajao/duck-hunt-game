@@ -139,6 +139,7 @@ function play () {
     }
 
     function startNewRound(VARroundsCounter) {
+        displayRoundNumber();
         setCountDownToEndWave();
         displayCountDownToEndWave();
 
@@ -149,7 +150,7 @@ function play () {
 }
 
 
-
+//GAME STARTING TIMER
 let gameStartingEndTimer;
 function displayGameStartingTimer(seconds) {
     const gameTimerContainer = document.getElementById('game-starting-timer');
@@ -174,9 +175,13 @@ function displayGameStartingTimer(seconds) {
         }
     };
     updateTimer(); // Start the timer
-    
 }
 
+
+function displayRoundNumber() {
+    roundNumberContainer = document.getElementById('round-number-display');
+    roundNumberContainer.textContent = `ROUND ${roundsCounter}`;
+}
 
 
 

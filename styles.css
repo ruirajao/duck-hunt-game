@@ -50,31 +50,45 @@ body {
 
 /* Style the pistol standby sprite */
 #pistol-standby {
-  background-image: url('sprites/pistol/pistol_standby.png'); /* Replace with the URL or file path of your pistol standby sprite */
+  background-image: url('sprites/pistol/pistol_standby.png');
+  /* Replace with the URL or file path of your pistol standby sprite */
   background-size: contain;
   background-repeat: no-repeat;
-  width: 20%; /* Set the width of the sprite */
-  height: 20%; /* Set the height of the sprite */
+  width: 20%;
+  /* Set the width of the sprite */
+  height: 20%;
+  /* Set the height of the sprite */
   position: absolute;
-  bottom: 0; /* Position the sprite at the bottom of the screen */
-  left: 50%; /* Position the sprite horizontally centered */
-  transform: translateX(-50%); /* Center the sprite horizontally using transform */
-  z-index: 3; /* Set the z-index to ensure the sprite is on top of other elements */
-  
+  bottom: 0;
+  /* Position the sprite at the bottom of the screen */
+  left: 50%;
+  /* Position the sprite horizontally centered */
+  transform: translateX(-50%);
+  /* Center the sprite horizontally using transform */
+  z-index: 3;
+  /* Set the z-index to ensure the sprite is on top of other elements */
+
 }
 
 /* Style the pistol shoot sprite */
 #pistol-shoot {
-  background-image: url('sprites/pistol/pistol_shoot.png'); /* Replace with the URL or file path of your pistol shoot sprite */
+  background-image: url('sprites/pistol/pistol_shoot.png');
+  /* Replace with the URL or file path of your pistol shoot sprite */
   background-size: contain;
   background-repeat: no-repeat;
-  width: 20%; /* Set the width of the sprite */
-  height: 20%; /* Set the height of the sprite */
+  width: 20%;
+  /* Set the width of the sprite */
+  height: 20%;
+  /* Set the height of the sprite */
   position: absolute;
-  bottom: 0; /* Position the sprite at the bottom of the screen */
-  left: 50%; /* Position the sprite horizontally centered */
-  transform: translateX(-50%); /* Center the sprite horizontally using transform */
-  z-index: 4; /* Set the z-index to ensure the sprite is on top of other elements, including the pistol standby sprite */
+  bottom: 0;
+  /* Position the sprite at the bottom of the screen */
+  left: 50%;
+  /* Position the sprite horizontally centered */
+  transform: translateX(-50%);
+  /* Center the sprite horizontally using transform */
+  z-index: 4;
+  /* Set the z-index to ensure the sprite is on top of other elements, including the pistol standby sprite */
 }
 
 
@@ -306,7 +320,7 @@ body {
   }
 }
 
-#bullet-counter{
+#bullet-counter {
   position: fixed;
   bottom: 0%;
   left: 5%;
@@ -315,7 +329,7 @@ body {
   z-index: 5;
 }
 
-#bullet-counter img{
+#bullet-counter img {
   width: 70px;
   height: 50px;
 }
@@ -327,9 +341,9 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.bullet1-cover{
+.bullet1-cover {
   position: absolute;
-  top:0;
+  top: 0;
   right: 45px;
   width: 20px;
   height: 25px;
@@ -338,10 +352,10 @@ body {
   display: none;
 }
 
-.bullet2-cover{
+.bullet2-cover {
   position: absolute;
-  top:0;
-  right:25px;
+  top: 0;
+  right: 25px;
   width: 20px;
   height: 25px;
   background-color: black;
@@ -349,10 +363,10 @@ body {
   display: none;
 }
 
-.bullet3-cover{
+.bullet3-cover {
   position: absolute;
-  top:0;
-  right:5px;
+  top: 0;
+  right: 5px;
   width: 20px;
   height: 25px;
   background-color: black;
@@ -365,4 +379,39 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+#round-number-display {
+  position: absolute;
+  width: 10vw;
+  height: 8vw;
+  top:20%;
+  animation-name: roundAnimation;
+  animation-fill-mode: forwards;
+  animation-duration: 3s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  z-index: 5;
+}
+
+@keyframes roundAnimation {
+  0% {
+    left: 0%;
+    opacity: 0%;
+  }
+
+  20% {
+    left: 40%;
+    opacity: 100%;
+  }
+
+  80% {
+    left: 55%;
+    opacity:100%
+  }
+
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
 }
