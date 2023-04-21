@@ -127,13 +127,19 @@ function play() {
         console.log("-----startGame method-----");
         sniffDog.launchWalkoutAnimation();
         displayGameStartingTimer(3);
+        displayRoundNumber(1);
         setTimeout(() => startNewRound(roundsCounter),4000);
     }
 
     function startNewRound(varRoundsCounter) {
         console.log("-----Start New Round method-----");
-        displayRoundNumber(varRoundsCounter);
 
+        (varRoundsCounter > 1) ? displayRoundNumber(varRoundsCounter) : "Let's go";
+        displayWaveTimer(5+(roundsCounter*5));
+
+        
+
+        //setTimeout(() => startNewRound(roundsCounter),4000);
         //setCountDownToEndWave();
         //displayCountDownToEndWave();
 
@@ -153,6 +159,8 @@ function displayGameStartingTimer(seconds) {
     // Create a timer element and append it to the DOM
     const timerElement = document.createElement('div');
     timerElement.setAttribute('id', 'timer');
+    timerElement.style.fontFamily = "PixelFont";
+    timerElement.style.fontSize = "400%";
     gameTimerContainer.appendChild(timerElement);
 
     // Function to update the timer element
@@ -161,10 +169,38 @@ function displayGameStartingTimer(seconds) {
         const timeLeft = Math.ceil((gameStartingEndTimer - currentTime) / 1000);
 
         if (timeLeft > 0) {
-            timerElement.textContent = `GAME STARTING IN ${timeLeft}`;
+            timerElement.textContent = `${timeLeft}`;
             setTimeout(updateTimer, 1000); // Update timer every second
         } else {
             timerElement.textContent = 'QUACK TIME!';
+            setTimeout(() => timerElement.remove(),1000);
+        }
+    };
+    updateTimer(); // Start the timer
+}
+
+let waveEndTimer;
+function displayWaveTimer(seconds) {
+    const waveTimeContainer = document.getElementById('wave-time-left');
+    waveEndTimer = Date.now() + (seconds * 1000); // Calculate the target end time
+
+    // Create a timer element and append it to the DOM
+    const timerElement = document.createElement('div');
+    timerElement.setAttribute('id', 'waveTimer');
+    timerElement.style.marginLeft = "5px";
+    timerElement.style.marginTop = "2px";
+    waveTimeContainer.appendChild(timerElement);
+
+    // Function to update the timer element
+    const updateTimer = () => {
+        const currentTime = Date.now();
+        const timeLeft = Math.ceil((waveEndTimer - currentTime) / 1000);
+
+        if (timeLeft > 0) {
+            timerElement.textContent = `TIMER: ${timeLeft}`;
+            setTimeout(updateTimer, 1000); // Update timer every second
+        } else {
+            timerElement.textContent = "TIME'S UP!";
             setTimeout(() => timerElement.remove(),1000);
         }
     };
@@ -176,8 +212,13 @@ function displayRoundNumber(varRoundsCounter) {
     roundNumberContainer = document.getElementById('round-number-display');
     roundElement = document.createElement('div');
     roundElement.setAttribute("id","round-element");
-    roundElement.textContent =  `ROUND ${VARroundsCounter}`;
+    roundElement.textContent =  `ROUND ${varRoundsCounter}`;
     roundNumberContainer.appendChild(roundElement);
+    roundElement.addEventListener('animationend', () => {
+        setTimeout(() => {
+            roundElement.remove();
+        }, 3000);
+    });
 }
 
 
