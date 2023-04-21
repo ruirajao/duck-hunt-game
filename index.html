@@ -10,19 +10,32 @@
 </head>
 
 <body>
+    <!-- Add the pistol standby and shoot sprites as HTML elements with unique IDs -->
+    <div id="pistol-standby" class="pistol"></div>
+    <div id="pistol-shoot" class="pistol"></div>
+
+    <div id="crosshair"></div>
+
     <button id="playButton">Play</button>
-    
+
+    <div id="duck-container">
+        <!-- DUCKS WILL BE HERE -->
+    </div>
+
+    <div id="dog-container">
+        <!-- Dogs behind bush WILL BE HERE -->
+    </div>
 
     <div id="field-container">
-        <div id="duck-container">
-            <!-- DUCKS WILL BE HERE -->
-        </div>
-
+        
         <div id="coord" class="coordinates"></div>
     </div>
 
     <script src="duck.js"></script>
+    <script src="dog.js"></script>
     <script src="main.js"></script>
+    <script src="pistol.js"></script>
+    
 </body>
 
 </html>
