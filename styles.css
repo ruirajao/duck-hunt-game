@@ -10,6 +10,11 @@ body {
   cursor: none;
 }
 
+@font-face {
+  font-family: PixelFont;
+  src: url('fonts/Pixeboy-z8XGD.ttf');
+}
+
 #crosshair {
   position: fixed;
   top: 0;
@@ -383,7 +388,7 @@ body {
 
 #round-number-display {
   position: absolute;
-  width: 10vw;
+  width: 20vw;
   height: 8vw;
   top:20%;
   animation-name: roundAnimation;
@@ -392,7 +397,8 @@ body {
   animation-iteration-count: 1;
   animation-timing-function: linear;
   z-index: 5;
-  font-size: 150%;
+  font-size: 800%;
+  font-family: PixelFont;
 }
 
 @keyframes roundAnimation {
