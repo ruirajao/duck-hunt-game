@@ -138,9 +138,10 @@ function play() {
         setTimeout(() => startNewRound(roundsCounter),4000);
     }
 
-    function startNewRound(VARroundsCounter) {
+    function startNewRound(varRoundsCounter) {
         console.log("-----Start New Round method-----");
-        displayRoundNumber(VARroundsCounter);
+        displayRoundNumber(varRoundsCounter);
+
         //setCountDownToEndWave();
         //displayCountDownToEndWave();
 
@@ -179,14 +180,12 @@ function displayGameStartingTimer(seconds) {
 }
 
 
-function displayRoundNumber(VARroundsCounter) {
-    console.log("oh bro")
+function displayRoundNumber(varRoundsCounter) {
     roundNumberContainer = document.getElementById('round-number-display');
     roundElement = document.createElement('div');
     roundElement.setAttribute("id","round-element");
     roundElement.textContent =  `ROUND ${VARroundsCounter}`;
     roundNumberContainer.appendChild(roundElement);
-    console.log("oh bro 2")
 }
 
 

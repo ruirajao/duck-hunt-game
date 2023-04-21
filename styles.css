@@ -417,3 +417,10 @@ body {
     opacity: 0%;
   }
 }
+
+#stats-container {
+  position: relative;
+  right:10%;
+  bottom:5%;
+
+}
