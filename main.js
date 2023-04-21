@@ -45,7 +45,7 @@ function createDuck() {
 }
 */
 
-let bulletCounter = 4;
+let bulletCounter = 3;
 let maxRounds = 5;
 let roundsCounter = 1;
 let maxWaves = 3;
@@ -63,14 +63,15 @@ let isRoundFinished = false;
 //startWithBlockCrosshair!
 
 function play() {
-    showBullets();
     const startTimerElement = document.getElementById("start-timer");
     startTimerElement.style.display = "block";
     setTimeout(() => {
       startTimerElement.style.display = "none";
+      startTimer(10);
+      showBullets();
+      freeDucks();
     }, 4000);
     
-    startTimer(10);
     sniffDog.launchWalkoutAnimation();
     //setTimeOut(); for animation
     //displayDivRound(roundCounter);
@@ -83,7 +84,7 @@ function play() {
     const audio = new Audio("audio/duck-flapping.mp3")
     audio.play();
     }
-    freeDucks();
+    
 
     function checkRoundCounter() {
         if (waveCounter === 3) {
