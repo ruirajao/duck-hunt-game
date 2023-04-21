@@ -63,6 +63,7 @@ let isRoundFinished = false;
 //startWithBlockCrosshair!
 
 function play() {
+    startTimer(10);
     sniffDog.launchWalkoutAnimation();
     //setTimeOut(); for animation
     //displayDivRound(roundCounter);
@@ -110,6 +111,33 @@ function play() {
     checkRoundCounter()
 
 
+}
+
+let endTime; // Define endTime outside of the function
+
+function startTimer(seconds) {
+    const fieldContainer = document.getElementById('field-container');
+    endTime = Date.now() + (seconds * 1000); // Calculate the target end time
+
+    // Create a timer element and append it to the DOM
+    const timerElement = document.createElement('div');
+    timerElement.setAttribute('id', 'timer');
+    fieldContainer.appendChild(timerElement);
+
+    // Function to update the timer element
+    const updateTimer = () => {
+        const currentTime = Date.now();
+        const timeLeft = Math.ceil((endTime - currentTime) / 1000);
+
+        if (timeLeft > 0) {
+            timerElement.textContent = `Time Left: ${timeLeft} seconds`;
+            setTimeout(updateTimer, 1000); // Update timer every second
+        } else {
+            timerElement.textContent = 'Time is up!';
+        }
+    };
+
+    updateTimer(); // Start the timer
 }
 
 
