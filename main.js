@@ -45,7 +45,7 @@ function createDuck() {
 }
 */
 
-
+let bulletCounter = 4;
 let maxRounds = 5;
 let roundsCounter = 1;
 let maxWaves = 3;
@@ -63,6 +63,13 @@ let isRoundFinished = false;
 //startWithBlockCrosshair!
 
 function play() {
+    showBullets();
+    const startTimerElement = document.getElementById("start-timer");
+    startTimerElement.style.display = "block";
+    setTimeout(() => {
+      startTimerElement.style.display = "none";
+    }, 4000);
+    
     startTimer(10);
     sniffDog.launchWalkoutAnimation();
     //setTimeOut(); for animation
@@ -109,8 +116,6 @@ function play() {
 
     checkWaveFinish();
     checkRoundCounter()
-
-
 }
 
 let endTime; // Define endTime outside of the function
@@ -141,4 +146,16 @@ function startTimer(seconds) {
 }
 
 
+
+function showBullets(){
+    const bulletCounterElement = document.getElementById("bullet-counter");
+    bulletCounterElement.innerHTML = `<p>BULLETS: <span style="font-size: 24px;">${bulletCounter}</span></p>`;
+  
+    document.addEventListener('click', () => {
+      if (bulletCounter > 0) {
+        bulletCounter--;
+        bulletCounterElement.innerHTML = `<p>BULLETS: <span style="font-size: 24px;">${bulletCounter}</span></p>`;
+      } 
+    });
+}
 
