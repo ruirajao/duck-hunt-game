@@ -110,9 +110,8 @@ class Duck {
                     const fall = new Audio("audio/duck-falling.mp3");
                     fall.play();
                     duckElement.style.backgroundImage = 'url("sprites/duck/falling.gif")';
-                    vy = -2;
-
-
+                    vy = -6;
+                    
                 }, 500);
             });
         }
