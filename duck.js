@@ -122,9 +122,9 @@ class Duck {
             if (rect.bottom > fieldContainer.offsetHeight * 0.75) { // Check if the top of the duck element is beyond the bottom of the screen
                 duckElement.remove(); // Remove the duck element from the DOM
                 Duck.kills++;
-                console.log(Duck.kills);
-                console.log("fieldContainer.offsetHeight:" + fieldContainer.offsetHeight);
-                console.log("passei aqui")
+                // console.log(Duck.kills);
+                // console.log("fieldContainer.offsetHeight:" + fieldContainer.offsetHeight);
+                // console.log("passei aqui")
             } else {
                 requestAnimationFrame(checkAndRemoveDuck); // Continue checking the position of the duck element
             }

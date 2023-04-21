@@ -59,12 +59,12 @@ function play1() {
     const startTimerElement = document.getElementById("start-timer");
     startTimerElement.style.display = "block";
     setTimeout(() => {
-      startTimerElement.style.display = "none";
-      startTimer(10);
-      showBullets();
-      freeDucks();
+        startTimerElement.style.display = "none";
+        startTimer(10);
+        showBullets();
+        freeDucks();
     }, 4000);
-    
+
     sniffDog.launchWalkoutAnimation();
     //setTimeOut(); for animation
     //displayDivRound(roundCounter);
@@ -74,10 +74,10 @@ function play1() {
         for (let i = 0; i < startingDucks; i++) {
             duckHandler.spawnDuck(velocity);
         }
-    const audio = new Audio("audio/duck-flapping.mp3")
-    audio.play();
+        const audio = new Audio("audio/duck-flapping.mp3")
+        audio.play();
     }
-    
+
 
     function checkRoundCounter() {
         if (waveCounter === 3) {
@@ -128,16 +128,18 @@ function play() {
         sniffDog.launchWalkoutAnimation();
         displayGameStartingTimer(3);
         displayRoundNumber(1);
-        setTimeout(() => startNewRound(roundsCounter),4000);
+        showBullets();
+        setTimeout(() => startNewRound(), 6000);
     }
 
-    function startNewRound(varRoundsCounter) {
+    function startNewRound() {
         console.log("-----Start New Round method-----");
+        (roundsCounter > 1) ? displayRoundNumber(roundsCounter) : "Let's go";
+        waveCounter = 1;
+        startWaves();
 
-        (varRoundsCounter > 1) ? displayRoundNumber(varRoundsCounter) : "Let's go";
-        displayWaveTimer(5+(roundsCounter*5));
 
-        
+
 
         //setTimeout(() => startNewRound(roundsCounter),4000);
         //setCountDownToEndWave();
@@ -147,6 +149,53 @@ function play() {
         //resetAmmo();
         //enableShooting();
     }
+
+    function startWaves() {
+        console.log("-----Start New Wave method-----");
+        console.log("Wave counter:" + waveCounter);
+        displayWaveTimer(5 + (roundsCounter * 5));
+        for (let i = 0; i < waveCounter; i++) {
+            duckHandler.spawnDuck(roundsCounter);
+        }
+        setCountdownToWaveEnd();
+    }
+
+    function setCountdownToWaveEnd() {
+        console.log("-----setCountdownToWaveEnd method-----");
+        let timeToRoundEnd = (5 + (roundsCounter * 5)) * 1000;
+
+        checkOutOfBullets();
+
+        if (bulletCounter === 0) {
+            finishWave();
+        }
+
+        waveEndCountDown = setTimeout(() => finishWave(), timeToRoundEnd);
+    }
+
+    function finishWave() {
+        console.log("-----finishWave method-----");
+        bulletCounter=3;
+        
+        waveCounter++;
+        if (waveCounter===4) {
+            roundsCounter++;
+            startNewRound();
+        } else {
+            startWaves();
+        }
+    }
+
+    function checkOutOfBullets() {
+        if (bulletCounter <= 0) {
+            // console.log("Out of bullets:" + bulletCounter);
+            finishWave();
+        } else {
+            // console.log("bulletCheck" + bulletCounter);
+            setTimeout(checkOutOfBullets, 500); // Check again after 1 second
+        }
+    }
+
 }
 
 
@@ -173,23 +222,23 @@ function displayGameStartingTimer(seconds) {
             setTimeout(updateTimer, 1000); // Update timer every second
         } else {
             timerElement.textContent = 'QUACK TIME!';
-            setTimeout(() => timerElement.remove(),1000);
+            setTimeout(() => timerElement.remove(), 1000);
         }
     };
     updateTimer(); // Start the timer
 }
 
 let waveEndTimer;
+const waveTimeContainer = document.getElementById('wave-time-left');
+const timerElement = document.createElement('div');
+waveTimeContainer.appendChild(timerElement);
+timerElement.setAttribute('id', 'waveTimer');
 function displayWaveTimer(seconds) {
-    const waveTimeContainer = document.getElementById('wave-time-left');
     waveEndTimer = Date.now() + (seconds * 1000); // Calculate the target end time
-
     // Create a timer element and append it to the DOM
-    const timerElement = document.createElement('div');
-    timerElement.setAttribute('id', 'waveTimer');
     timerElement.style.marginLeft = "5px";
     timerElement.style.marginTop = "2px";
-    waveTimeContainer.appendChild(timerElement);
+    
 
     // Function to update the timer element
     const updateTimer = () => {
@@ -201,18 +250,18 @@ function displayWaveTimer(seconds) {
             setTimeout(updateTimer, 1000); // Update timer every second
         } else {
             timerElement.textContent = "TIME'S UP!";
-            setTimeout(() => timerElement.remove(),1000);
+            setTimeout(() => timerElement.remove(), 1000);
         }
     };
     updateTimer(); // Start the timer
 }
 
 
-function displayRoundNumber(varRoundsCounter) {
+function displayRoundNumber(roundCounter) {
     roundNumberContainer = document.getElementById('round-number-display');
     roundElement = document.createElement('div');
-    roundElement.setAttribute("id","round-element");
-    roundElement.textContent =  `ROUND ${varRoundsCounter}`;
+    roundElement.setAttribute("id", "round-element");
+    roundElement.textContent = `ROUND ${roundCounter}`;
     roundNumberContainer.appendChild(roundElement);
     roundElement.addEventListener('animationend', () => {
         setTimeout(() => {
@@ -254,23 +303,24 @@ function startTimer(seconds) {
 
 
 
-function showBullets(){
+function showBullets() {
     const bulletCounterElement = document.getElementById("bullet-counter");
     const bullet1Cover = document.querySelector(".bullet1-cover");
     const bullet2Cover = document.querySelector(".bullet2-cover");
     const bullet3Cover = document.querySelector(".bullet3-cover");
     const bullet = new Audio("audio/gun-shot.mp3")
-  
+
     document.addEventListener('click', () => {
-      if (bulletCounter === 3) {
-        bullet1Cover.style.display = 'inline';
-      } else if(bulletCounter === 2){
-        bullet2Cover.style.display = 'inline';
-      } else if(bulletCounter === 1) {
-        bullet3Cover.style.display = 'inline';
-      }
+        if (bulletCounter === 3) {
+            bullet1Cover.style.display = 'inline';
+        } else if (bulletCounter === 2) {
+            bullet2Cover.style.display = 'inline';
+        } else if (bulletCounter === 1) {
+            bullet3Cover.style.display = 'inline';
+        }
 
         bulletCounter--;
         bullet.play();
     });
 }
+
