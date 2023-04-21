@@ -1,6 +1,10 @@
 const playButton = document.getElementById('playButton');
 playButton.addEventListener('click', play);
 
+const crosshairContainter = document.getElementById("crosshair");
+let pistolShootContainer = document.getElementById('pistol-shoot');
+const duckContainer = document.getElementById('duck-container');
+
 
 /*
 function createDuck() {
@@ -153,7 +157,14 @@ function play() {
     function startWaves() {
         console.log("-----Start New Wave method-----");
         console.log("Wave counter:" + waveCounter);
+
+        duckContainer.style.pointerEvents = "all";
+        crosshairContainter.style.backgroundImage = 'url("/sprites/crosshair.png")';
+        pistolShootContainer.style.display = "block";
+
+
         displayWaveTimer(5 + (roundsCounter * 5));
+
         for (let i = 0; i < waveCounter; i++) {
             duckHandler.spawnDuck(roundsCounter);
         }
@@ -175,10 +186,11 @@ function play() {
 
     function finishWave() {
         console.log("-----finishWave method-----");
-        bulletCounter=3;
-        
+        bulletCounter = 3;
+
+
         waveCounter++;
-        if (waveCounter===4) {
+        if (waveCounter === 4) {
             roundsCounter++;
             startNewRound();
         } else {
@@ -189,9 +201,12 @@ function play() {
     function checkOutOfBullets() {
         if (bulletCounter <= 0) {
             // console.log("Out of bullets:" + bulletCounter);
-            finishWave();
+            duckContainer.style.pointerEvents = "none";
+            crosshairContainter.style.backgroundImage = 'url("/sprites/block.png")';
+            pistolShootContainer.style.display = "none";
+            setTimeout(finishWave, 4000);
         } else {
-            // console.log("bulletCheck" + bulletCounter);
+            console.log("bulletCounter: " + bulletCounter);
             setTimeout(checkOutOfBullets, 500); // Check again after 1 second
         }
     }
@@ -238,7 +253,7 @@ function displayWaveTimer(seconds) {
     // Create a timer element and append it to the DOM
     timerElement.style.marginLeft = "5px";
     timerElement.style.marginTop = "2px";
-    
+
 
     // Function to update the timer element
     const updateTimer = () => {
@@ -317,6 +332,7 @@ function showBullets() {
             bullet2Cover.style.display = 'inline';
         } else if (bulletCounter === 1) {
             bullet3Cover.style.display = 'inline';
+            
         }
 
         bulletCounter--;
