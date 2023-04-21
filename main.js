@@ -1,5 +1,3 @@
-
-
 const playButton = document.getElementById('playButton');
 playButton.addEventListener('click', play);
 
@@ -46,8 +44,11 @@ function createDuck() {
 */
 
 let bulletCounter = 3;
-let maxRounds = 5;
+let maxRounds = 3;
 let roundsCounter = 1;
+let startingDucks = 1;
+let killedDucks = 0;
+
 let maxWaves = 3;
 let waveCounter = 1;
 
@@ -62,7 +63,7 @@ let isRoundFinished = false;
 
 //startWithBlockCrosshair!
 
-function play() {
+function play1() {
     const startTimerElement = document.getElementById("start-timer");
     startTimerElement.style.display = "block";
     setTimeout(() => {
@@ -78,7 +79,7 @@ function play() {
     //unlockCrosshair();
 
     function freeDucks() {
-        for (let i = 0; i < maxWaves; i++) {
+        for (let i = 0; i < startingDucks; i++) {
             duckHandler.spawnDuck(velocity);
         }
     const audio = new Audio("audio/duck-flapping.mp3")
@@ -96,14 +97,14 @@ function play() {
     }
 
     function checkWaveFinish() {
-        if (Duck.kills === 3) {
+        if (Duck.kills === startingDucks) {
             waveCounter++;
             isWaveFinished = true;
             Duck.kills = 0;
             freeDucks();
             console.log("Wave counter:" + waveCounter);
         } else {
-            setTimeout(checkWaveFinish, 2000); // Check again after 2 second
+            setTimeout(checkWaveFinish, 1000); // Check again after 1 second
         }
     }
 
@@ -111,18 +112,80 @@ function play() {
         if (Duck.kills === 1) {
             catchAndLaughDog.showDogWithKilledDucks(1)
         } else {
-            setTimeout(checkWaveFinish, 2000); // Check again after 2 second
+            setTimeout(checkWaveFinish, 1000); // Check again after 1 second
         }
 
 
     }
 
     checkWaveFinish();
-    checkRoundCounter()
+    checkRoundCounter();
+
+    if (isRoundFinished) {
+        resetAllStats();
+        startNewRound();
+    }
 }
 
-let endTime; // Define endTime outside of the function
+function play () {
 
+    startGame();
+
+    function startGame() {
+        console.log("-----startGame method-----");
+        sniffDog.launchWalkoutAnimation();
+        displayGameStartingTimer(5);
+        setTimeout(() => startNewRound(roundsCounter),3000);
+    }
+
+    function startNewRound(VARroundsCounter) {
+        setCountDownToEndWave();
+        displayCountDownToEndWave();
+
+        displayRoundTitle();
+        resetAmmo();
+        enableShooting();
+    }
+}
+
+
+
+let gameStartingEndTimer;
+function displayGameStartingTimer(seconds) {
+    const gameTimerContainer = document.getElementById('game-starting-timer');
+    gameStartingEndTimer = Date.now() + (seconds * 1000); // Calculate the target end time
+
+    // Create a timer element and append it to the DOM
+    const timerElement = document.createElement('div');
+    timerElement.setAttribute('id', 'timer');
+    gameTimerContainer.appendChild(timerElement);
+
+    // Function to update the timer element
+    const updateTimer = () => {
+        const currentTime = Date.now();
+        const timeLeft = Math.ceil((gameStartingEndTimer - currentTime) / 1000);
+
+        if (timeLeft > 0) {
+            timerElement.textContent = `GAME STARTING IN ${timeLeft}`;
+            setTimeout(updateTimer, 1000); // Update timer every second
+        } else {
+            timerElement.textContent = 'QUACK TIME!';
+            setTimeout(() => timerElement.remove(),1000);
+        }
+    };
+    updateTimer(); // Start the timer
+    
+}
+
+
+
+
+
+
+
+
+/*
+let endTime; // Define endTime outside of the function
 function startTimer(seconds) {
     const fieldContainer = document.getElementById('field-container');
     endTime = Date.now() + (seconds * 1000); // Calculate the target end time
@@ -144,9 +207,10 @@ function startTimer(seconds) {
             timerElement.textContent = 'Time is up!';
         }
     };
-
     updateTimer(); // Start the timer
-}
+}*/
+
+
 
 
 
