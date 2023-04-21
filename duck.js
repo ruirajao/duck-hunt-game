@@ -119,7 +119,7 @@ class Duck {
         function checkAndRemoveDuck() {
             let rect = duckElement.getBoundingClientRect(); // Get the current position of the duck element
             console.log
-            if (rect.bottom > fieldContainer.offsetHeight - 200) { // Check if the top of the duck element is beyond the bottom of the screen
+            if (rect.bottom > fieldContainer.offsetHeight * 0.75) { // Check if the top of the duck element is beyond the bottom of the screen
                 duckElement.remove(); // Remove the duck element from the DOM
                 Duck.kills++;
                 console.log(Duck.kills);
