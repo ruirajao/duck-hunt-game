@@ -80,7 +80,7 @@ function play() {
         for (let i = 0; i < maxWaves; i++) {
             duckHandler.spawnDuck(velocity);
         }
-    var audio = new Audio(audio/duck-flapping.mp3)
+    const audio = new Audio("audio/duck-flapping.mp3")
     audio.play();
     }
     freeDucks();
@@ -151,13 +151,22 @@ function startTimer(seconds) {
 
 function showBullets(){
     const bulletCounterElement = document.getElementById("bullet-counter");
-    bulletCounterElement.innerHTML = `<p>BULLETS: <span style="font-size: 24px;">${bulletCounter}</span></p>`;
+    const bullet1Cover = document.querySelector(".bullet1-cover");
+    const bullet2Cover = document.querySelector(".bullet2-cover");
+    const bullet3Cover = document.querySelector(".bullet3-cover");
+    const bullet = new Audio("audio/gun-shot.mp3")
   
     document.addEventListener('click', () => {
-      if (bulletCounter > 0) {
+      if (bulletCounter === 3) {
+        bullet1Cover.style.display = 'inline';
+      } else if(bulletCounter === 2){
+        bullet2Cover.style.display = 'inline';
+      } else if(bulletCounter === 1) {
+        bullet3Cover.style.display = 'inline';
+      }
+
         bulletCounter--;
-        bulletCounterElement.innerHTML = `<p>BULLETS: <span style="font-size: 24px;">${bulletCounter}</span></p>`;
-      } 
+        bullet.play();
     });
 }
 
