@@ -392,7 +392,7 @@ body {
   animation-iteration-count: 1;
   animation-timing-function: linear;
   z-index: 5;
-  font-size: 150%;
+  font-size: 200%;
 }
 
 @keyframes roundAnimation {
