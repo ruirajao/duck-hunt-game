@@ -1,25 +1,30 @@
 const playButton = document.getElementById('playButton');
 playButton.addEventListener('click', play);
 
+const fieldContainer = document.getElementById('field-container');
 const crosshairContainter = document.getElementById("crosshair");
 const pistolShootContainer = document.getElementById('pistol-shoot');
+
+
 let isEnableShooting = false;
 let waveTimeOut;
 
-const duckContainer = document.getElementById('duck-container');
+
+
+
 
 let bulletCounter = 3;
 let maxRounds = 3;
 let roundsCounter = 1;
 let ducksPerWave = 2;
-let killedDucks = 0;
 
 let maxWaves = 3;
 let waveCounter = 1;
 
 let velocity = roundsCounter;
 let isGameOver = false;
-let duckHandler = new Duck();
+// let duckHandler = new Duck();
+
 let sniffDog = new Dog("dog1");
 let catchAndLaughDog = new Dog("dog2");
 
@@ -54,7 +59,8 @@ function play() {
         displayWaveTimer(5 + (roundsCounter * 5));
 
         for (let i = 0; i < ducksPerWave; i++) {
-            duckHandler.spawnDuck(velocity);
+            spawnDuck(2);
+
         }
         setCountdownToWaveEnd();
     }
@@ -99,7 +105,6 @@ function play() {
     }
 
 }
-
 
 //GAME STARTING TIMER
 let gameStartingEndTimer;
