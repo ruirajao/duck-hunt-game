@@ -462,9 +462,11 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: black;
-  background-size: 60%;
-  width: 100vw;
+  background-color: rgb(11, 225, 253);
+  background-image: url("sprites/sprite main.webp");  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: contain;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -484,18 +486,40 @@ body {
 
 #duck-text, #hunt-text {
   font-family: PixelFont;
-  font-size: 900%;
+  font-size: 1300%;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 2px 2px 0 #000;
 }
 
 #duck-text{
-  color: rgb(3, 227, 201);
+  color: rgb(48, 206, 0);
+  position: relative;
+  right: 100px;
+  
 }
 
 #hunt-text{
   color: rgb(242, 125, 0);
+  position: relative;
+  left: 100px;
+  bottom: 350px;
 }
 
 #play-button {
   width: 200px;
   height: 100px;
+  position: relative;
+  top: 600px;
+}
+
+#bird-one{
+  scale: 250%;
+  position: relative;
+  left: 200px;
+}
+
+#bird-two{
+  scale: 250%;
+  position: relative;
+  left: 400px;
+  top: 100px;
 }
