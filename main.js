@@ -1,5 +1,5 @@
-const playButton = document.getElementById('playButton');
-playButton.addEventListener('click', play);
+// const playButton = document.getElementById('playButton');
+// playButton.addEventListener('click', play);
 
 const fieldContainer = document.getElementById('field-container');
 const crosshairContainter = document.getElementById("crosshair");
@@ -30,6 +30,7 @@ let isRoundFinished = false;
 
 function play() {
     hideMainMenu();
+    stopIntroAudio();
     startGame();
 
     function startGame() {
@@ -197,7 +198,6 @@ function showBullets() {
     });
 }
 
-
 function enableShooting() {
     isEnableShooting = true;
     document.getElementById("crosshair").style.backgroundImage = 'url(/sprites/crosshair.png)';
@@ -219,3 +219,9 @@ function hideMainMenu(){
     const mainMenu = document.querySelector(".main-menu-container");
     mainMenu.classList.add("hide-container");
 }
+
+function stopIntroAudio() {
+    const introAudio = document.getElementById('intro-audio');
+    introAudio.pause();
+    introAudio.currentTime = 0;
+  }
