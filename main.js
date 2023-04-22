@@ -9,10 +9,6 @@ const pistolShootContainer = document.getElementById('pistol-shoot');
 let isEnableShooting = false;
 let waveTimeOut;
 
-
-
-
-
 let bulletCounter = 3;
 let maxRounds = 3;
 let roundsCounter = 1;
@@ -82,6 +78,7 @@ function play() {
 
     function finishWave() {
         console.log("-----finishWave method-----");
+        deleteAllDucks();
         bulletCounter = 3;
 
         if (waveCounter === 3) {
@@ -94,13 +91,14 @@ function play() {
         }
     }
 
+    //Bullets refresher
     function checkOutOfBulletsAndUpdate() {
         if (bulletCounter <= 0) {
             disableShooting();
             setTimeout(finishWave, 3000);
         } else {
             console.log("bulletCounter: " + bulletCounter);
-            setTimeout(checkOutOfBulletsAndUpdate, 100); // Check again after 1 second
+            setTimeout(checkOutOfBulletsAndUpdate, 300);
         }
     }
 

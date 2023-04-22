@@ -96,6 +96,7 @@ function spawnDuck(velocity) {
     }
 
     function listenerHitAndFall() {
+        //duckelement click event listener
         duckElement.addEventListener('click', function () {
             checkAndRemoveDuck();
             // duck hit
@@ -112,6 +113,8 @@ function spawnDuck(velocity) {
 
             }, 500);
         });
+
+        //fail to hit duckelement click event listener
         document.addEventListener("click", function (event) {
             if (isEnableShooting) {
                 if (
@@ -163,6 +166,13 @@ function showDuck(killedDucks) {
         dogElement.classList.add("gotOne");
     } else {
         dogElement.classList.add("gotTwo");
+    }
+}
+
+function deleteAllDucks() {
+    const duckElements = document.getElementsByClassName('duck');
+    while (duckElements.length > 0) {
+        duckElements[0].remove();
     }
 }
 
