@@ -1,7 +1,8 @@
 const duckContainer = document.getElementById('duck-container');
 
 
-let ducksKilled;
+let totalDucksKilled = 0; //TODO: Use this for points
+let ducksKilledWave = 0;
 
 function getRandomSign() {
     return Math.random() < 0.5 ? -1 : 1;
@@ -124,6 +125,8 @@ function spawnDuck(velocity) {
                     dogLaugh();
                 }
             }
+
+
         });
     }
 
@@ -132,8 +135,20 @@ function spawnDuck(velocity) {
         console.log
         if (rect.bottom > fieldContainer.offsetHeight * 0.75) { // Check if the top of the duck element is beyond the bottom of the screen
             duckElement.remove();
-            showDuck(1); // Remove the duck element from the DOM
-            ducksKilled++;
+            totalDucksKilled++;
+            ducksKilledWave++;
+
+            if (ducksKilledWave === 1) {
+                setTimeout(() => showDuck(1), 100);
+            } else {
+                setTimeout(function () {
+                    showDuck(2);
+                    ducksKilledWave = 0;
+                }, 500);
+            }
+
+
+
             // console.log(Duck.kills);
             // console.log("fieldContainer.offsetHeight:" + fieldContainer.offsetHeight);
             // console.log("passei aqui")
@@ -157,22 +172,13 @@ function dogLaugh() {
     dogElement.classList.add("laugh");
 }
 
-function showDuck(killedDucks) {
-    let dogElement = document.createElement("div");
-    let dogContainer = document.getElementById("dog-container");
-    dogElement.setAttribute("id", "dog2");
-    dogContainer.appendChild(dogElement);
-    if (killedDucks === 1) {
-        dogElement.classList.add("gotOne");
-    } else {
-        dogElement.classList.add("gotTwo");
-    }
-}
+
 
 function deleteAllDucks() {
     const duckElements = document.getElementsByClassName('duck');
     while (duckElements.length > 0) {
         duckElements[0].remove();
+        missedDucks++;
     }
 }
 
