@@ -283,11 +283,14 @@ body {
   background-color: black;
   color: whitesmoke;
   z-index: 5;
+  border: 3px solid rgb(234, 238, 13);
+  border-radius: 10px;
 }
 
 #bullet-counter img {
   width: 70px;
   height: 50px;
+  border-radius: 10px;
 }
 
 #start-timer {
@@ -434,6 +437,8 @@ body {
   color: white;
   border: 3px solid rgb(234, 238, 13);
   border-radius: 10px;
+  font-family: PixelFont;
+  font-size: 150%;
 }
 
 .round-number {
@@ -448,4 +453,7 @@ body {
   border: 3px solid rgb(238, 227, 13);
   border-left: none;
   border-radius: 10px;
+  font-family: PixelFont;
+  font-size: 150%;
+
 }
