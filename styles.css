@@ -511,6 +511,15 @@ body {
   top: 600px;
 }
 
+#play-button{
+  filter: grayscale(100%);
+  transition: filter 0.3s ease-in-out;
+}
+
+#play-button:hover{
+  filter: grayscale(0%);
+}
+
 #bird-one{
   scale: 250%;
   position: relative;
