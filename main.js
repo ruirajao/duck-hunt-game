@@ -1,25 +1,30 @@
 const playButton = document.getElementById('playButton');
-playButton.addEventListener('click', play);
+playButton.addEventListener('click', startGame);
 
 const fieldContainer = document.getElementById('field-container');
 const crosshairContainter = document.getElementById("crosshair");
 const pistolShootContainer = document.getElementById('pistol-shoot');
+
+const bullet = new Audio("audio/gun-shot.mp3");
 
 
 let isEnableShooting = false;
 let waveTimeOut;
 
 let bulletCounter = 3;
-let maxRounds = 3;
+let maxRounds = 5;
 let roundsCounter = 1;
 let ducksPerWave = 2;
 
 let maxWaves = 3;
 let waveCounter = 1;
 
+let maxMissedDucksToGameover = 3;
+
+let missedDucks = 0;
+
 let velocity = roundsCounter;
 let isGameOver = false;
-// let duckHandler = new Duck();
 
 let sniffDog = new Dog("dog1");
 let catchAndLaughDog = new Dog("dog2");
@@ -28,81 +33,97 @@ let isWaveFinished = false;
 let isRoundFinished = false;
 
 
-function play() {
 
-    startGame();
+function startGame() {
+    console.log("-----startGame method-----");
+    sniffDog.launchWalkoutAnimation();
+    displayGameStartingTimer(3);
+    displayRoundNumber(1);
+    showBullets();
+    setTimeout(() => startNewRound(), 4000);
+}
 
-    function startGame() {
-        console.log("-----startGame method-----");
-        sniffDog.launchWalkoutAnimation();
-        displayGameStartingTimer(3);
-        displayRoundNumber(1);
-        showBullets();
-        setTimeout(() => startNewRound(), 6000);
+function startNewRound() {
+    console.log("-----Start New Round method-----");
+    (roundsCounter > 1) ? displayRoundNumber(roundsCounter) : "Let's go";
+    setTimeout(() => startWaves(), 2000);
+}
+
+function startWaves() {
+    console.log("-----Start New Wave method-----");
+    console.log("Wave counter:" + waveCounter);
+    enableShooting();
+    updateWavesAndRounds();
+    displayWaveTimer(10);
+
+    for (let i = 0; i < ducksPerWave; i++) {
+        spawnDuck(velocity);
+    }
+    setCountdownToWaveEnd();
+}
+
+function setCountdownToWaveEnd() {
+    console.log("-----setCountdownToWaveEnd method-----");
+    // Clears any previous timeouts
+    clearTimeout(waveTimeOut);
+
+    let timeToWaveEnd = 10000;
+    checkOutOfBulletsAndUpdate();
+    checkDucksKilledsAndUpdate();
+
+    if (bulletCounter === 0) {
+        finishWave();
     }
 
-    function startNewRound() {
-        console.log("-----Start New Round method-----");
-        (roundsCounter > 1) ? displayRoundNumber(roundsCounter) : "Let's go";
-        setTimeout(() => startWaves(), 3000);
+    waveTimeOut = setTimeout(() => finishWave(), timeToWaveEnd); // Store the new timeout ID
+}
+
+function finishWave() {
+    console.log("-----finishWave method-----");
+    deleteAllDucks();
+    if (missedDucks === maxMissedDucksToGameover) {
+        console.log("----GAME OVER: Eu gostava de dar game over mas...");
+        //gameOver();
     }
+    bulletCounter = 3;
 
-    function startWaves() {
-        console.log("-----Start New Wave method-----");
-        console.log("Wave counter:" + waveCounter);
-        enableShooting();
-        updateWavesAndRounds();
-        displayWaveTimer(5 + (roundsCounter * 5));
-
-        for (let i = 0; i < ducksPerWave; i++) {
-            spawnDuck(2);
-
-        }
-        setCountdownToWaveEnd();
+    if (waveCounter === 3) {
+        roundsCounter++;
+        waveCounter = 1;
+        startNewRound();
+    } else {
+        waveCounter++;
+        startWaves();
     }
+}
 
-    function setCountdownToWaveEnd() {
-        console.log("-----setCountdownToWaveEnd method-----");
-        // Clears any previous timeouts
+//Bullets refresher - End wave if out of bullets
+function checkOutOfBulletsAndUpdate() {
+    if (bulletCounter <= 0) {
+        disableShooting();
+
         clearTimeout(waveTimeOut);
 
-        let timeToWaveEnd = 10000;
-        checkOutOfBulletsAndUpdate();
-
-        if (bulletCounter === 0) {
-            finishWave();
-        }
-
-        waveTimeOut = setTimeout(() => finishWave(), timeToWaveEnd); // Store the new timeout ID
+        setTimeout(finishWave, 1000);
+        console.log("Acabou a ronda por falta de balas");
+    } else {
+        setTimeout(checkOutOfBulletsAndUpdate, 300);
     }
-
-    function finishWave() {
-        console.log("-----finishWave method-----");
-        deleteAllDucks();
-        bulletCounter = 3;
-
-        if (waveCounter === 3) {
-            roundsCounter++;
-            waveCounter = 1;
-            startNewRound();
-        } else {
-            waveCounter++;
-            startWaves();
-        }
-    }
-
-    //Bullets refresher
-    function checkOutOfBulletsAndUpdate() {
-        if (bulletCounter <= 0) {
-            disableShooting();
-            setTimeout(finishWave, 3000);
-        } else {
-            console.log("bulletCounter: " + bulletCounter);
-            setTimeout(checkOutOfBulletsAndUpdate, 300);
-        }
-    }
-
 }
+
+//Ducks killed refresher - End wave if two ducks are killed
+function checkDucksKilledsAndUpdate() {
+    if (ducksKilledWave === 2) {
+        disableShooting();
+        clearTimeout(waveTimeOut);
+        setTimeout(finishWave, 1000);
+        console.log("Acabou a ronda por matança dos dois patos");
+    } else {
+        setTimeout(checkDucksKilledsAndUpdate, 100);
+    }
+}
+
+
 
 //GAME STARTING TIMER
 let gameStartingEndTimer;
@@ -183,19 +204,20 @@ function showBullets() {
 
     document.addEventListener('click', () => {
         if (isEnableShooting) {
-            if (bulletCounter === 3) {
-                bullet1Cover.style.display = 'inline';
-            } else if (bulletCounter === 2) {
-                bullet2Cover.style.display = 'inline';
-            } else if (bulletCounter === 1) {
-                bullet3Cover.style.display = 'inline';
-            }
+            // if (bulletCounter === 3) {
+            //     bullet1Cover.style.display = 'inline';
+            // } else if (bulletCounter === 2) {
+            //     bullet2Cover.style.display = 'inline';
+            // } else if (bulletCounter === 1) {
+            //     bullet3Cover.style.display = 'inline';
+            // }
 
             bulletCounter--;
             bullet.play();
         }
     });
 }
+
 
 
 function enableShooting() {
@@ -211,6 +233,6 @@ function disableShooting() {
 function updateWavesAndRounds() {
     let waves = document.querySelector(".waves");
     let rounds = document.querySelector(".round-number");
-    waves.innerHTML = `WAVE : ${waveCounter} `;
-    rounds.innerHTML = `Round : ${roundsCounter} `;
+    waves.innerHTML = `WAVE : ${waveCounter} / ${maxWaves} `;
+    rounds.innerHTML = `Round : ${roundsCounter} / ${maxRounds}`;
 }

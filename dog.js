@@ -46,3 +46,15 @@ class Dog {
         this.dogElement.classList.add('laugh');
     }
 }   
+
+function showDuck(killedDucks) {
+    let dogElement = document.createElement("div");
+    let dogContainer = document.getElementById("dog-container");
+    dogElement.setAttribute("id", "dog2");
+    dogContainer.appendChild(dogElement);
+    if (killedDucks === 1) {
+        dogElement.classList.add("gotOne");
+    } else {
+        dogElement.classList.add("gotTwo");
+    }
+}

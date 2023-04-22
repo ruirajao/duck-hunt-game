@@ -1,7 +1,7 @@
 body {
   position: relative;
   background-color: lightskyblue;
-  /* background-image: url("/sprites/stars.gif"); */
+  /* background-image: url("/sprites/hell.gif"); */
   background-size: cover;
   background-repeat: no-repeat;
   z-index: 0;
@@ -74,13 +74,21 @@ body {
   z-index: 2;
 }
 
-
-
-
 #duck-container {
   pointer-events: all;
   z-index: 1;
 }
+
+
+/* #duck-container img {
+  background-size: 100%;
+  position: absolute;
+  bottom: 20%;
+  left: 40%;
+  transform: scale(1);
+} */
+
+
 
 .duck {
   width: 78px;
@@ -124,7 +132,7 @@ body {
 }
 
 #dog1.found {
-  left: 50%;
+  left: 45%;
   background-image: url("sprites/dog/found.png");
   animation-name: dogFoundAnimation;
   animation-duration: 1s;
@@ -133,7 +141,7 @@ body {
 }
 
 #dog1.found.jump {
-  left: 50%;
+  left: 45%;
   background-image: url("sprites/dog/pawelJumper.gif");
   background-size: contain;
   animation-name: dogJumpAnimation;
@@ -181,15 +189,17 @@ body {
   background-size: 100%;
   background-repeat: no-repeat;
   animation-name: dogGotOneAnimation;
-  animation-duration: 3s;
+  animation-duration: 2s;
   animation-iteration-count: 1;
   animation-timing-function: linear;
-  transform: scale(120%)
+  transform: scale(120%);
+  opacity: 0;
 }
 
 @keyframes dogGotOneAnimation {
   0% {
     bottom: 0%;
+    opacity: 1;
   }
 
   30% {
@@ -200,8 +210,13 @@ body {
     bottom: 26%
   }
 
+  99% {
+    opacity: 1;
+  }
+
   100% {
-    bottom: 0%
+    bottom: 0%;
+    opacity: 0;
   }
 }
 
@@ -218,12 +233,14 @@ body {
   animation-duration: 3s;
   animation-iteration-count: 1;
   animation-timing-function: linear;
-  transform: scale(120%)
+  transform: scale(120%);
+  opacity: 0;
 }
 
 @keyframes dogGotTwoAnimation {
   0% {
     bottom: 0%;
+    opacity: 1;
   }
 
   30% {
@@ -234,8 +251,13 @@ body {
     bottom: 26%
   }
 
+  99% {
+    opacity: 1;
+  }
+
   100% {
-    bottom: 0%
+    bottom: 0%;
+    opacity: 0;
   }
 }
 
@@ -247,6 +269,7 @@ body {
   height: 8vw;
   left: 48%;
   bottom: 8%;
+  opacity: 0;
   background-image: url("sprites/dog/dogLaugh.gif");
   background-size: 100%;
   background-repeat: no-repeat;
@@ -260,6 +283,7 @@ body {
 @keyframes dogLaughAnimation {
   0% {
     bottom: 0%;
+    opacity: 1;
   }
 
   30% {
@@ -270,9 +294,13 @@ body {
     bottom: 26%
   }
 
+  99% {
+    opacity: 1;
+  }
+
   100% {
     bottom: 0%;
-    display: none;
+    opacity: 0;
   }
 }
 
@@ -339,8 +367,8 @@ body {
 
 #round-element {
   position: absolute;
-  top:20%;
-  left:1%;
+  top: 20%;
+  left: 1%;
   z-index: 5;
   animation-name: roundAnimation;
   animation-fill-mode: forwards;
@@ -358,13 +386,17 @@ body {
   }
 
   20% {
-    left: 40%;
+    left: 25%;
     opacity: 100%;
   }
 
   80% {
-    left: 55%;
-    opacity:100%
+    left: 50%;
+    opacity: 100%
+  }
+
+  90% {
+    opacity: 0%;
   }
 
   100% {
@@ -417,14 +449,14 @@ body {
 }
 
 .bottom-section {
-  height:60%;
-  width:100%;
+  height: 60%;
+  width: 100%;
   display: flex;
   flex-direction: row;
 }
 
 .waves {
-  height:50%;
+  height: 50%;
   width: 50%;
   flex: 1;
   display: flex;
