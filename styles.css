@@ -514,12 +514,31 @@ body {
 #bird-one{
   scale: 250%;
   position: relative;
-  left: 200px;
+  right: 800px;
+  top: 300px;
+  z-index: 10;
 }
 
 #bird-two{
   scale: 250%;
   position: relative;
-  left: 400px;
+  right: 1000px;
   top: 100px;
+  z-index: 10;
+}
+
+#bird-one, #bird-two {
+  animation-name: move-birds;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes move-birds {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100vw); /* use 100vw instead of 100% to move across the entire screen */
+  }
 }
