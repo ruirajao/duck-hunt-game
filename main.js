@@ -4,6 +4,7 @@ playButton.addEventListener('click', play);
 const crosshairContainter = document.getElementById("crosshair");
 const pistolShootContainer = document.getElementById('pistol-shoot');
 let isEnableShooting = false;
+let waveTimeOut;
 
 const duckContainer = document.getElementById('duck-container');
 
@@ -42,7 +43,6 @@ function play() {
     function startNewRound() {
         console.log("-----Start New Round method-----");
         (roundsCounter > 1) ? displayRoundNumber(roundsCounter) : "Let's go";
-        waveCounter = 1;
         setTimeout(() => startWaves(), 3000);
     }
 
@@ -50,7 +50,7 @@ function play() {
         console.log("-----Start New Wave method-----");
         console.log("Wave counter:" + waveCounter);
         enableShooting();
-
+        updateWavesAndRounds();
         displayWaveTimer(5 + (roundsCounter * 5));
 
         for (let i = 0; i < ducksPerWave; i++) {
@@ -61,27 +61,29 @@ function play() {
 
     function setCountdownToWaveEnd() {
         console.log("-----setCountdownToWaveEnd method-----");
-        let timeToWaveEnd = 10000;
+        // Clears any previous timeouts
+        clearTimeout(waveTimeOut);
 
+        let timeToWaveEnd = 10000;
         checkOutOfBulletsAndUpdate();
 
         if (bulletCounter === 0) {
             finishWave();
         }
 
-        setTimeout(() => finishWave(), timeToWaveEnd);
+        waveTimeOut = setTimeout(() => finishWave(), timeToWaveEnd); // Store the new timeout ID
     }
 
     function finishWave() {
         console.log("-----finishWave method-----");
         bulletCounter = 3;
 
-
-        waveCounter++;
-        if (waveCounter === 4) {
+        if (waveCounter === 3) {
             roundsCounter++;
+            waveCounter = 1;
             startNewRound();
         } else {
+            waveCounter++;
             startWaves();
         }
     }
@@ -136,9 +138,6 @@ waveTimeContainer.appendChild(timerElement);
 timerElement.setAttribute('id', 'waveTimer');
 function displayWaveTimer(seconds) {
     waveEndTimer = Date.now() + (seconds * 1000); // Calculate the target end time
-    // Create a timer element and append it to the DOM
-    timerElement.style.marginLeft = "2px";
-
 
     // Function to update the timer element
     const updateTimer = () => {
@@ -204,4 +203,11 @@ function enableShooting() {
 function disableShooting() {
     isEnableShooting = false;
     document.getElementById("crosshair").style.backgroundImage = 'url(/sprites/forbidden.png)';
+}
+
+function updateWavesAndRounds() {
+    let waves = document.querySelector(".waves");
+    let rounds = document.querySelector(".round-number");
+    waves.innerHTML = `WAVE : ${waveCounter} `;
+    rounds.innerHTML = `Round : ${roundsCounter} `;
 }

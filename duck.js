@@ -116,12 +116,12 @@ class Duck {
             });
             document.addEventListener("click", function (event) {
                 if (
-                  !event.target.classList.contains("duck") &&
-                  !event.target.id.includes("playButton")
+                    !event.target.classList.contains("duck") &&
+                    !event.target.id.includes("playButton")
                 ) {
-                  dogLaugh();
+                    dogLaugh();
                 }
-              });
+            });
         }
 
         function checkAndRemoveDuck() {
@@ -151,21 +151,21 @@ class Duck {
             dogElement.setAttribute("id", "dog2");
             dogContainer.appendChild(dogElement);
             dogElement.classList.add("laugh");
-          }
-        
-          function showDuck(killedDucks) {
+        }
+
+        function showDuck(killedDucks) {
             let dogElement = document.createElement("div");
             let dogContainer = document.getElementById("dog-container");
             dogElement.setAttribute("id", "dog2");
             dogContainer.appendChild(dogElement);
             if (killedDucks === 1) {
-              dogElement.classList.add("gotOne");
+                dogElement.classList.add("gotOne");
             } else {
-              dogElement.classList.add("gotTwo");
+                dogElement.classList.add("gotTwo");
             }
-          }
+        }
     }
 
 
-    
+
 }
