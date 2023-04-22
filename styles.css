@@ -455,5 +455,47 @@ body {
   border-radius: 10px;
   font-family: PixelFont;
   font-size: 150%;
+}
 
+.main-menu-container .main-menu{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  background-size: 60%;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  z-index: 50;
+}
+
+.main-menu-container.hide-container{
+  display: none;
+}
+
+.main-menu-container.show-container{
+  display: flex;
+}
+
+#duck-text, #hunt-text {
+  font-family: PixelFont;
+  font-size: 900%;
+}
+
+#duck-text{
+  color: rgb(3, 227, 201);
+}
+
+#hunt-text{
+  color: rgb(242, 125, 0);
+}
+
+#play-button {
+  width: 200px;
+  height: 100px;
 }

@@ -29,7 +29,7 @@ let isRoundFinished = false;
 
 
 function play() {
-
+    hideMainMenu();
     startGame();
 
     function startGame() {
@@ -213,4 +213,9 @@ function updateWavesAndRounds() {
     let rounds = document.querySelector(".round-number");
     waves.innerHTML = `WAVE : ${waveCounter} `;
     rounds.innerHTML = `Round : ${roundsCounter} `;
+}
+
+function hideMainMenu(){
+    const mainMenu = document.querySelector(".main-menu-container");
+    mainMenu.classList.remove("show-container");
 }
