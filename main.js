@@ -217,5 +217,5 @@ function updateWavesAndRounds() {
 
 function hideMainMenu(){
     const mainMenu = document.querySelector(".main-menu-container");
-    mainMenu.classList.remove("show-container");
+    mainMenu.classList.add("hide-container");
 }
