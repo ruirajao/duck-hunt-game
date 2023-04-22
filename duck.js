@@ -114,13 +114,22 @@ class Duck {
 
                 }, 500);
             });
+            document.addEventListener("click", function (event) {
+                if (
+                  !event.target.classList.contains("duck") &&
+                  !event.target.id.includes("playButton")
+                ) {
+                  dogLaugh();
+                }
+              });
         }
 
         function checkAndRemoveDuck() {
             let rect = duckElement.getBoundingClientRect(); // Get the current position of the duck element
             console.log
             if (rect.bottom > fieldContainer.offsetHeight * 0.75) { // Check if the top of the duck element is beyond the bottom of the screen
-                duckElement.remove(); // Remove the duck element from the DOM
+                duckElement.remove();
+                showDuck(1); // Remove the duck element from the DOM
                 Duck.kills++;
                 // console.log(Duck.kills);
                 // console.log("fieldContainer.offsetHeight:" + fieldContainer.offsetHeight);
@@ -135,5 +144,28 @@ class Duck {
 
         // Call the animation function initially
         animateElement();
+
+        function dogLaugh() {
+            let dogElement = document.createElement("div");
+            let dogContainer = document.getElementById("dog-container");
+            dogElement.setAttribute("id", "dog2");
+            dogContainer.appendChild(dogElement);
+            dogElement.classList.add("laugh");
+          }
+        
+          function showDuck(killedDucks) {
+            let dogElement = document.createElement("div");
+            let dogContainer = document.getElementById("dog-container");
+            dogElement.setAttribute("id", "dog2");
+            dogContainer.appendChild(dogElement);
+            if (killedDucks === 1) {
+              dogElement.classList.add("gotOne");
+            } else {
+              dogElement.classList.add("gotTwo");
+            }
+          }
     }
+
+
+    
 }
