@@ -2,20 +2,21 @@ const playButton = document.getElementById('playButton');
 playButton.addEventListener('click', play);
 
 const crosshairContainter = document.getElementById("crosshair");
-let pistolShootContainer = document.getElementById('pistol-shoot');
-const duckContainer = document.getElementById('duck-container');
+const pistolShootContainer = document.getElementById('pistol-shoot');
+let isEnableShooting = false;
 
+const duckContainer = document.getElementById('duck-container');
 
 let bulletCounter = 3;
 let maxRounds = 3;
 let roundsCounter = 1;
-let startingDucks = 1;
+let ducksPerWave = 2;
 let killedDucks = 0;
 
 let maxWaves = 3;
 let waveCounter = 1;
 
-let velocity = 1;
+let velocity = roundsCounter;
 let isGameOver = false;
 let duckHandler = new Duck();
 let sniffDog = new Dog("dog1");
@@ -24,7 +25,6 @@ let catchAndLaughDog = new Dog("dog2");
 let isWaveFinished = false;
 let isRoundFinished = false;
 
-//startWithBlockCrosshair!
 
 function play() {
 
@@ -43,37 +43,33 @@ function play() {
         console.log("-----Start New Round method-----");
         (roundsCounter > 1) ? displayRoundNumber(roundsCounter) : "Let's go";
         waveCounter = 1;
-        startWaves();
+        setTimeout(() => startWaves(), 3000);
     }
 
     function startWaves() {
         console.log("-----Start New Wave method-----");
         console.log("Wave counter:" + waveCounter);
-
-        duckContainer.style.pointerEvents = "all";
-        crosshairContainter.style.backgroundImage = 'url("/sprites/crosshair.png")';
-        pistolShootContainer.style.display = "block";
-
+        enableShooting();
 
         displayWaveTimer(5 + (roundsCounter * 5));
 
-        for (let i = 0; i < waveCounter; i++) {
-            duckHandler.spawnDuck(roundsCounter);
+        for (let i = 0; i < ducksPerWave; i++) {
+            duckHandler.spawnDuck(velocity);
         }
         setCountdownToWaveEnd();
     }
 
     function setCountdownToWaveEnd() {
         console.log("-----setCountdownToWaveEnd method-----");
-        let timeToRoundEnd = (5 + (roundsCounter * 5)) * 1000;
+        let timeToWaveEnd = 10000;
 
-        checkOutOfBullets();
+        checkOutOfBulletsAndUpdate();
 
         if (bulletCounter === 0) {
             finishWave();
         }
 
-        waveEndCountDown = setTimeout(() => finishWave(), timeToRoundEnd);
+        setTimeout(() => finishWave(), timeToWaveEnd);
     }
 
     function finishWave() {
@@ -90,16 +86,13 @@ function play() {
         }
     }
 
-    function checkOutOfBullets() {
+    function checkOutOfBulletsAndUpdate() {
         if (bulletCounter <= 0) {
-            // console.log("Out of bullets:" + bulletCounter);
-            duckContainer.style.pointerEvents = "none";
-            crosshairContainter.style.backgroundImage = 'url("/sprites/block.png")';
-            pistolShootContainer.style.display = "none";
-            setTimeout(finishWave, 4000);
+            disableShooting();
+            setTimeout(finishWave, 3000);
         } else {
             console.log("bulletCounter: " + bulletCounter);
-            setTimeout(checkOutOfBullets, 500); // Check again after 1 second
+            setTimeout(checkOutOfBulletsAndUpdate, 100); // Check again after 1 second
         }
     }
 
@@ -144,8 +137,7 @@ timerElement.setAttribute('id', 'waveTimer');
 function displayWaveTimer(seconds) {
     waveEndTimer = Date.now() + (seconds * 1000); // Calculate the target end time
     // Create a timer element and append it to the DOM
-    timerElement.style.marginLeft = "5px";
-    timerElement.style.marginTop = "2px";
+    timerElement.style.marginLeft = "2px";
 
 
     // Function to update the timer element
@@ -188,17 +180,28 @@ function showBullets() {
     const bullet = new Audio("audio/gun-shot.mp3")
 
     document.addEventListener('click', () => {
-        if (bulletCounter === 3) {
-            bullet1Cover.style.display = 'inline';
-        } else if (bulletCounter === 2) {
-            bullet2Cover.style.display = 'inline';
-        } else if (bulletCounter === 1) {
-            bullet3Cover.style.display = 'inline';
-            
-        }
+        if (isEnableShooting) {
+            if (bulletCounter === 3) {
+                bullet1Cover.style.display = 'inline';
+            } else if (bulletCounter === 2) {
+                bullet2Cover.style.display = 'inline';
+            } else if (bulletCounter === 1) {
+                bullet3Cover.style.display = 'inline';
+            }
 
-        bulletCounter--;
-        bullet.play();
+            bulletCounter--;
+            bullet.play();
+        }
     });
 }
 
+
+function enableShooting() {
+    isEnableShooting = true;
+    document.getElementById("crosshair").style.backgroundImage = 'url(/sprites/crosshair.png)';
+}
+
+function disableShooting() {
+    isEnableShooting = false;
+    document.getElementById("crosshair").style.backgroundImage = 'url(/sprites/forbidden.png)';
+}

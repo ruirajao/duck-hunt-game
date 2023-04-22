@@ -111,7 +111,7 @@ class Duck {
                     fall.play();
                     duckElement.style.backgroundImage = 'url("sprites/duck/falling.gif")';
                     vy = -6;
-                    
+
                 }, 500);
             });
         }
