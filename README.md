@@ -33,13 +33,10 @@ To run the game locally on your machine, follow these steps:
     - Click the "Start Game" button to begin.
     - Use your mouse to aim and click on the ducks to shoot them.
     - You have a limited number of bullets (3), so use them wisely.
-    - Each successful hit earns you points, while misses deduct points.
-    - Each game has a maximum of 5 rounds.
-    - The game ends when you run out of bullets or when you've shot all the ducks.
+    - Each successful hit earns you points.
     - Click the "Restart" button to play again.
 
 <b> Game Rules: </b>
-
     - Unlimited rounds per game.
     - Each round consists of 3 waves.
     - Each wave spawns 2 ducks for the player to shoot.
