@@ -7,32 +7,20 @@ const pistolShootContainer = document.getElementById('pistol-shoot');
 
 const bullet = new Audio("audio/gun-shot.mp3");
 
-
 let isEnableShooting = false;
-
 let bulletCounter = 3;
 let maxRounds = 5;
 let roundsCounter = 1;
 let ducksPerWave = 2;
-
 let maxWaves = 3;
 let waveCounter = 1;
-
 let maxMissedDucksToGameover = 3;
-
 let missedDucks = 0;
-
-let velocity = roundsCounter;
 let isGameOver = false;
-
-let sniffDog = new Dog("dog1");
-let catchAndLaughDog = new Dog("dog2");
 
 let isWaveFinished = false;
 let isRoundFinished = false;
-
 let waveTimeOut;
-
 
 function startGame() {
     sniffDog.launchWalkoutAnimation();
@@ -54,7 +42,7 @@ function startWaves() {
     console.log("Wave counter:" + waveCounter);
     isWaveFinished = false;
     bulletCounter = 3;
-    clearTimeout(waveTimeOut);
+    clearTimeout(roundsCounter);
     setCountdownToWaveEnd();
     enableShooting();
     updateWavesAndRounds();
@@ -115,8 +103,11 @@ function checkOutOfBulletsAndUpdate() {
         clearTimeout(waveTimeOut);
         finishWave();
 
+        /*
     } else {
         setTimeout(checkOutOfBulletsAndUpdate, 500);
+    }
+    */
     }
 }
 
@@ -132,8 +123,11 @@ function checkDucksKilledsAndUpdate() {
         clearTimeout(waveTimeOut);
         finishWave();
 
-    } else {
-        setTimeout(checkDucksKilledsAndUpdate, 1000);
+        /*
+        } else {
+            setTimeout(checkDucksKilledsAndUpdate, 1000);
+        }
+        */
     }
 }
 
@@ -243,6 +237,13 @@ function disableShooting() {
     isEnableShooting = false;
     document.getElementById("crosshair").style.backgroundImage = 'url(/sprites/forbidden.png)';
 }
+
+document.addEventListener('click', () => {
+    if (isEnableShooting) {
+        checkOutOfBulletsAndUpdate();
+        checkDucksKilledsAndUpdate();
+    }
+});
 
 function updateWavesAndRounds() {
     let waves = document.querySelector(".waves");
