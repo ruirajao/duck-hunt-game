@@ -1,27 +1,33 @@
-// const playButton = document.getElementById('playButton');
-// playButton.addEventListener('click', play);
-
 const fieldContainer = document.getElementById('field-container');
 const crosshairContainter = document.getElementById("crosshair");
 const pistolShootContainer = document.getElementById('pistol-shoot');
 
 const bullet = new Audio("audio/gun-shot.mp3");
 
-let isEnableShooting = false;
-let bulletCounter = 3;
 let maxRounds = 5;
 let roundsCounter = 1;
-let ducksPerWave = 2;
+
 let maxWaves = 3;
 let waveCounter = 1;
+let ducksPerWave = 2;
+
 let maxMissedDucksToGameover = 3;
 let missedDucks = 0;
-let isGameOver = false;
+let bulletCounter = 3;
 
+let isEnableShooting = false;
+let isGameOver = false;
 let isWaveFinished = false;
 let isRoundFinished = false;
 let waveTimeOut;
 
+document.addEventListener('click', () => {
+    if (isEnableShooting) {
+        checkOutOfBulletsAndUpdate();
+        checkDucksKilledsAndUpdate();
+        refreshScore();
+    }
+});
 
 function play() {
     hideMainMenu();
@@ -38,15 +44,12 @@ function startGame() {
 }
 
 function startNewRound() {
-    console.log("-Start New Round method: " + roundsCounter);
     (roundsCounter > 1) ? displayRoundNumber(roundsCounter) : "Let's go";
 
     setTimeout(() => startWaves(), 2000);
 }
 
 function startWaves() {
-    console.log("-Start New Wave method-" + waveCounter);
-    console.log("Wave counter:" + waveCounter);
     isWaveFinished = false;
     bulletCounter = 3;
     showBulletsAgain();
@@ -65,23 +68,18 @@ function startWaves() {
 }
 
 function finishWave() {
-    console.log("-finishWave method-");
     clearTimeout(waveTimeOut);
     deleteAllDucks();
     console.log("missedDucks: " + missedDucks + "||" + " maxMissedDucksToGameover: " + maxMissedDucksToGameover)
 
-    //GAME OVER:
+    // Game over
     if (missedDucks >= maxMissedDucksToGameover) {
-        console.log("disableShooting a baixo")
         disableShooting();
-        console.log("deleteAllDucks a baixo")
         deleteAllDucks();
-        console.log("clearTimeout a baixo")
         clearTimeout(waveTimeOut);
         showGameOver(totalDucksKilled * 500);
         return;
     }
-
 
     if (waveCounter === 3) {
         roundsCounter++;
@@ -101,7 +99,6 @@ function setCountdownToWaveEnd() {
         let timeToWaveEnd = 10000;
 
         waveTimeOut = setTimeout(function () {
-            console.log("-> Finish wave chamado do Timer 10 seg");
             if (!isWaveFinished) {
                 isWaveFinished = true;
                 finishWave();
@@ -111,32 +108,23 @@ function setCountdownToWaveEnd() {
     }
 }
 
-//Bullets refresher - End wave if out of bullets
 function checkOutOfBulletsAndUpdate() {
     if (bulletCounter <= 0 && ducksKilledWave < 2 && !isWaveFinished) {
         disableShooting();
-        console.log("-> Finish wave chamado da checkOutOfBulletsAndUpdate");
-
         isWaveFinished = true;
         clearTimeout(waveTimeOut);
         setTimeout(finishWave, 1500);
-        //finishWave();
-
     }
 }
 
-//Ducks killed refresher - End wave if two ducks are killed
+
 function checkDucksKilledsAndUpdate() {
     if (ducksKilledWave === 2 && !isWaveFinished) {
         disableShooting();
-
-        console.log("-> Finish wave chamado da checkDucksKilledsAndUpdate (ducksKilledWave === 2)");
-
         isWaveFinished = true;
         ducksKilledWave = 0;
         clearTimeout(waveTimeOut);
         setTimeout(finishWave, 1500);
-        //finishWave();
     }
 }
 
@@ -145,55 +133,53 @@ function checkDucksKilledsAndUpdate() {
 //GAME STARTING TIMER
 let gameStartingEndTimer;
 function displayGameStartingTimer(seconds) {
-    const gameTimerContainer = document.getElementById('game-starting-timer');
-    gameStartingEndTimer = Date.now() + (seconds * 1000); // Calculate the target end time
+    // Calculate the target end time
+    gameStartingEndTimer = Date.now() + (seconds * 1000);
 
-    // Create a timer element and append it to the DOM
+    const gameTimerContainer = document.getElementById('game-starting-timer');
     const timerElement = document.createElement('div');
     timerElement.setAttribute('id', 'timer');
     timerElement.style.fontFamily = "PixelFont";
     timerElement.style.fontSize = "400%";
     gameTimerContainer.appendChild(timerElement);
 
-    // Function to update the timer element
+    // Updates the timer element every 1000ms
     const updateTimer = () => {
         const currentTime = Date.now();
         const timeLeft = Math.ceil((gameStartingEndTimer - currentTime) / 1000);
 
         if (timeLeft > 0) {
             timerElement.textContent = `${timeLeft}`;
-            setTimeout(updateTimer, 1000); // Update timer every second
+            setTimeout(updateTimer, 1000);
         } else {
             timerElement.textContent = 'QUACK TIME!';
             setTimeout(() => timerElement.remove(), 1000);
         }
     };
-    updateTimer(); // Start the timer
+    // Initiliaze timer
+    updateTimer();
 }
 
-//WAVE TIMER
+//WAVE TIMER DISPLAYER
 let waveEndTimer;
 const waveTimeContainer = document.getElementById('wave-time-left');
 const timerElement = document.createElement('div');
 waveTimeContainer.appendChild(timerElement);
 timerElement.setAttribute('id', 'waveTimer');
 function displayWaveTimer(seconds) {
-    waveEndTimer = Date.now() + (seconds * 1000); // Calculate the target end time
-
-    // Function to update the timer element
+    waveEndTimer = Date.now() + (seconds * 1000);
     const updateTimer = () => {
         const currentTime = Date.now();
         const timeLeft = Math.ceil((waveEndTimer - currentTime) / 1000);
-
         if (timeLeft > 0) {
             timerElement.textContent = `TIMER: ${timeLeft}`;
-            setTimeout(updateTimer, 1000); // Update timer every second
+            setTimeout(updateTimer, 1000);
         } else {
             timerElement.textContent = "TIME'S UP!";
             setTimeout(() => timerElement.remove(), 1000);
         }
     };
-    updateTimer(); // Start the timer
+    updateTimer();
 }
 
 
@@ -210,8 +196,6 @@ function displayRoundNumber(roundCounter) {
     });
 }
 
-
-// TODO: This should be a updateDisplayBullets
 function showBullets() {
     const bulletCounterElement = document.getElementById("bullet-counter");
     const bullet1Cover = document.querySelector(".bullet1-cover");
@@ -245,13 +229,7 @@ function disableShooting() {
     document.getElementById("crosshair").style.backgroundImage = 'url(/sprites/forbidden.png)';
 }
 
-document.addEventListener('click', () => {
-    if (isEnableShooting) {
-        checkOutOfBulletsAndUpdate();
-        checkDucksKilledsAndUpdate();
-        refreshScore();
-    }
-});
+
 
 function updateWavesAndRounds() {
     let waves = document.querySelector(".waves");
@@ -271,7 +249,7 @@ function showBulletsAgain() {
     childDivs.forEach((div) => (div.style.display = "none"));
 }
 
-function hideMainMenu(){
+function hideMainMenu() {
     const mainMenu = document.querySelector(".main-menu-container");
     mainMenu.classList.add("hide-container");
 }
@@ -280,4 +258,4 @@ function stopIntroAudio() {
     const introAudio = document.getElementById('intro-audio');
     introAudio.pause();
     introAudio.currentTime = 0;
-  }
+}
