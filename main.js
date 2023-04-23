@@ -23,7 +23,7 @@ let isRoundFinished = false;
 let waveTimeOut;
 
 function startGame() {
-    sniffDog.launchWalkoutAnimation();
+    launchWalkoutAnimation();
     displayGameStartingTimer(3);
     displayRoundNumber(1);
     showBullets();
@@ -51,7 +51,7 @@ function startWaves() {
     displayWaveTimer(10);
 
     for (let i = 0; i < ducksPerWave; i++) {
-        spawnDuck(velocity);
+        spawnDuck(roundsCounter);
     }
 
 }
@@ -101,13 +101,9 @@ function checkOutOfBulletsAndUpdate() {
 
         isWaveFinished = true;
         clearTimeout(waveTimeOut);
-        finishWave();
+        setTimeout(finishWave, 1500);
+        //finishWave();
 
-        /*
-    } else {
-        setTimeout(checkOutOfBulletsAndUpdate, 500);
-    }
-    */
     }
 }
 
@@ -121,13 +117,8 @@ function checkDucksKilledsAndUpdate() {
         isWaveFinished = true;
         ducksKilledWave = 0;
         clearTimeout(waveTimeOut);
-        finishWave();
-
-        /*
-        } else {
-            setTimeout(checkDucksKilledsAndUpdate, 1000);
-        }
-        */
+        setTimeout(finishWave, 1500);
+        //finishWave();
     }
 }
 

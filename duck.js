@@ -138,14 +138,11 @@ function spawnDuck(velocity) {
         console.log
         if (rect.bottom > fieldContainer.offsetHeight * 0.75) { // Check if the top of the duck element is beyond the bottom of the screen
             duckElement.remove();
-            
+    
             if (ducksKilledWave === 1) {
-                setTimeout(() => showDuck(1), 100);
+                showDuck(1);
             } else {
-                setTimeout(function () {
-                    showDuck(2);
-                    
-                }, 50);
+                showDuck(2);
             }
 
 
@@ -164,16 +161,6 @@ function spawnDuck(velocity) {
     // Call the animation function initially
     animateElement();
 }
-
-function dogLaugh() {
-    let dogElement = document.createElement("div");
-    let dogContainer = document.getElementById("dog-container");
-    dogElement.setAttribute("id", "dog2");
-    dogContainer.appendChild(dogElement);
-    dogElement.classList.add("laugh");
-}
-
-
 
 function deleteAllDucks() {
     const duckElements = document.getElementsByClassName('duck');

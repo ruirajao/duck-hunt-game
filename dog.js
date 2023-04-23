@@ -1,60 +1,41 @@
-class Dog {
+function launchWalkoutAnimation () {
+    const dogElement = document.createElement('div');
+    const fieldContainer = document.getElementById('field-container');
+    dogElement.setAttribute("id", "dog1");
+    fieldContainer.appendChild(dogElement);
 
-    constructor(id) {
-        this.dogId = `${id}`;
-        this.fieldContainer = document.getElementById('field-container');
-        this.dogElement = document.createElement('div');
-        this.dogContainer = document.getElementById('dog-container');
-    }
-
-    launchWalkoutAnimation() {
-        this.dogElement.setAttribute("id", this.dogId);
-        this.fieldContainer.appendChild(this.dogElement);
-
-        this.dogElement.addEventListener('animationend', () => {
-            this.dogElement.classList.add('found');
-        });
-
-        this.dogElement.addEventListener('animationend', () => {
-            setTimeout(() => {
-                this.dogElement.classList.add('jump');
-            }, 1000);
-        });
-
-        this.dogElement.addEventListener('animationend', () => {
-            setTimeout(() => {
-                this.dogElement.remove();
-            }, 1800);
-        });
-    }
-
-    showDogWithKilledDucks(killedDucks) {
-        this.dogElement.setAttribute("id", this.dogId);
-        this.dogContainer.appendChild(this.dogElement);
-
-        if (killedDucks === 1) {
-            this.dogElement.classList.add('gotOne');
-
-        } else {
-            this.dogElement.classList.add('gotTwo');
-        }
-    }
-
-    showDogLaugh() {
-        this.dogElement.setAttribute("id", this.dogId);
-        this.dogContainer.appendChild(this.dogElement);
-        this.dogElement.classList.add('laugh');
-    }
-}   
+    dogElement.addEventListener('animationend', () => {
+        dogElement.classList.add('found');
+    });
+    dogElement.addEventListener('animationend', () => {
+        setTimeout(() => {
+            dogElement.classList.add('jump');
+        }, 1000);
+    });
+    dogElement.addEventListener('animationend', () => {
+        setTimeout(() => {
+            dogElement.remove();
+        }, 1800);
+    });
+}
 
 function showDuck(killedDucks) {
-    let dogElement = document.createElement("div");
-    let dogContainer = document.getElementById("dog-container");
-    dogElement.setAttribute("id", "dog2");
-    dogContainer.appendChild(dogElement);
-    if (killedDucks === 1) {
-        dogElement.classList.add("gotOne");
-    } else {
-        dogElement.classList.add("gotTwo");
-    }
+let dogElement = document.createElement("div");
+let dogContainer = document.getElementById("dog-container");
+dogElement.setAttribute("id", "dog2");
+dogContainer.appendChild(dogElement);
+if (killedDucks === 1) {
+    dogElement.classList.add("gotOne");
+} else {
+    console.log("dog 2 chamado");
+    dogElement.classList.add("gotTwo");
+}
+}
+
+function dogLaugh () {
+let dogElement = document.createElement("div");
+let dogContainer = document.getElementById("dog-container");
+dogElement.setAttribute("id", "dog2");
+dogContainer.appendChild(dogElement);
+dogElement.classList.add("laugh");
 }
