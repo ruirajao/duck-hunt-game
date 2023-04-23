@@ -99,7 +99,10 @@ function spawnDuck(velocity) {
     function listenerHitAndFall() {
         //duckelement click event listener
         duckElement.addEventListener('click', function () {
+            ducksKilledWave++;
+            totalDucksKilled++;
             checkAndRemoveDuck();
+            
             // duck hit
             duckElement.style.backgroundImage = 'url("sprites/duck/hit.png")';
             vx = 0;
@@ -135,16 +138,14 @@ function spawnDuck(velocity) {
         console.log
         if (rect.bottom > fieldContainer.offsetHeight * 0.75) { // Check if the top of the duck element is beyond the bottom of the screen
             duckElement.remove();
-            totalDucksKilled++;
-            ducksKilledWave++;
-
+            
             if (ducksKilledWave === 1) {
                 setTimeout(() => showDuck(1), 100);
             } else {
                 setTimeout(function () {
                     showDuck(2);
-                    ducksKilledWave = 0;
-                }, 500);
+                    
+                }, 50);
             }
 
 

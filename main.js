@@ -9,7 +9,6 @@ const bullet = new Audio("audio/gun-shot.mp3");
 
 
 let isEnableShooting = false;
-let waveTimeOut;
 
 let bulletCounter = 3;
 let maxRounds = 5;
@@ -32,10 +31,10 @@ let catchAndLaughDog = new Dog("dog2");
 let isWaveFinished = false;
 let isRoundFinished = false;
 
+let waveTimeOut;
 
 
 function startGame() {
-    console.log("-----startGame method-----");
     sniffDog.launchWalkoutAnimation();
     displayGameStartingTimer(3);
     displayRoundNumber(1);
@@ -44,48 +43,41 @@ function startGame() {
 }
 
 function startNewRound() {
-    console.log("-----Start New Round method-----");
+    console.log("-Start New Round method: " + roundsCounter);
     (roundsCounter > 1) ? displayRoundNumber(roundsCounter) : "Let's go";
+
     setTimeout(() => startWaves(), 2000);
 }
 
 function startWaves() {
-    console.log("-----Start New Wave method-----");
+    console.log("-Start New Wave method-" + waveCounter);
     console.log("Wave counter:" + waveCounter);
+    isWaveFinished = false;
+    bulletCounter = 3;
+    clearTimeout(waveTimeOut);
+    setCountdownToWaveEnd();
     enableShooting();
     updateWavesAndRounds();
+    checkOutOfBulletsAndUpdate();
+    checkDucksKilledsAndUpdate();
     displayWaveTimer(10);
 
     for (let i = 0; i < ducksPerWave; i++) {
         spawnDuck(velocity);
     }
-    setCountdownToWaveEnd();
-}
 
-function setCountdownToWaveEnd() {
-    console.log("-----setCountdownToWaveEnd method-----");
-    // Clears any previous timeouts
-    clearTimeout(waveTimeOut);
-
-    let timeToWaveEnd = 10000;
-    checkOutOfBulletsAndUpdate();
-    checkDucksKilledsAndUpdate();
-
-    if (bulletCounter === 0) {
-        finishWave();
-    }
-
-    waveTimeOut = setTimeout(() => finishWave(), timeToWaveEnd); // Store the new timeout ID
 }
 
 function finishWave() {
-    console.log("-----finishWave method-----");
+    console.log("-finishWave method-");
+    clearTimeout(waveTimeOut);
     deleteAllDucks();
+
     if (missedDucks === maxMissedDucksToGameover) {
         console.log("----GAME OVER: Eu gostava de dar game over mas...");
         //gameOver();
     }
-    bulletCounter = 3;
+
 
     if (waveCounter === 3) {
         roundsCounter++;
@@ -95,31 +87,53 @@ function finishWave() {
         waveCounter++;
         startWaves();
     }
+    updateWavesAndRounds();
+}
+
+function setCountdownToWaveEnd() {
+    // Clears any previous timeouts
+    clearTimeout(waveTimeOut);
+    let timeToWaveEnd = 10000;
+
+    waveTimeOut = setTimeout(function () {
+        console.log("-> Finish wave chamado do Timer 10 seg");
+        if (!isWaveFinished) {
+            isWaveFinished = true;
+            finishWave();
+        }
+
+    }, timeToWaveEnd); // Store the new timeout ID
 }
 
 //Bullets refresher - End wave if out of bullets
 function checkOutOfBulletsAndUpdate() {
-    if (bulletCounter <= 0) {
+    if (bulletCounter <= 0 && ducksKilledWave < 2 && !isWaveFinished) {
         disableShooting();
+        console.log("-> Finish wave chamado da checkOutOfBulletsAndUpdate");
 
+        isWaveFinished = true;
         clearTimeout(waveTimeOut);
+        finishWave();
 
-        setTimeout(finishWave, 1000);
-        console.log("Acabou a ronda por falta de balas");
     } else {
-        setTimeout(checkOutOfBulletsAndUpdate, 300);
+        setTimeout(checkOutOfBulletsAndUpdate, 500);
     }
 }
 
 //Ducks killed refresher - End wave if two ducks are killed
 function checkDucksKilledsAndUpdate() {
-    if (ducksKilledWave === 2) {
+    if (ducksKilledWave === 2 && !isWaveFinished) {
         disableShooting();
+
+        console.log("-> Finish wave chamado da checkDucksKilledsAndUpdate (ducksKilledWave === 2)");
+
+        isWaveFinished = true;
+        ducksKilledWave = 0;
         clearTimeout(waveTimeOut);
-        setTimeout(finishWave, 1000);
-        console.log("Acabou a ronda por matança dos dois patos");
+        finishWave();
+
     } else {
-        setTimeout(checkDucksKilledsAndUpdate, 100);
+        setTimeout(checkDucksKilledsAndUpdate, 1000);
     }
 }
 
@@ -234,5 +248,5 @@ function updateWavesAndRounds() {
     let waves = document.querySelector(".waves");
     let rounds = document.querySelector(".round-number");
     waves.innerHTML = `WAVE : ${waveCounter} / ${maxWaves} `;
-    rounds.innerHTML = `Round : ${roundsCounter} / ${maxRounds}`;
+    rounds.innerHTML = `ROUND : ${roundsCounter} / ${maxRounds}`;
 }
