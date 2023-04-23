@@ -13,6 +13,7 @@ restartButton.addEventListener('click', function () {
     gameOverDiv.style.display = 'none';
     allVariablesRestart();
     startGame();
+    escapedDucksDisplay();
 });
 
 function allVariablesRestart() {

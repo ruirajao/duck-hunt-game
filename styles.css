@@ -659,3 +659,50 @@ body {
     /* use 100vw instead of 100% to move across the entire screen */
   }
 }
+
+.ducks-bar { 
+  font-size: 2Vh;
+  background-color: black;
+  color: whitesmoke;
+  position: fixed;
+  bottom: 1.5%;
+  right: 64%;
+  width: 17%;
+  height: 8%;
+  border-radius: 10px;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  overflow: hidden;
+  border: 3px solid rgb(162, 242, 119);
+}
+
+.ducks-bar-inner {
+  height: 100%;
+  font-size: 260%;
+  font-family: PixelFont;
+  margin-left: 0.6vh;
+  margin-right: 0.6vh;
+  margin-bottom: 0.1vw;
+  margin-top: 0.1vw;
+  overflow: hidden; 
+}
+.duckies {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  color: white;
+  margin-bottom: 4%;
+  margin-top: 4%;
+  margin-left: 5%;
+  margin-right: 1%;
+  overflow: hidden;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 1.8vw;
+}
+

@@ -152,6 +152,22 @@ function deleteAllDucks() {
         duckElements[0].remove();
         missedDucks++;
     }
+    escapedDucksDisplay();
+}
+
+function escapedDucksDisplay() {
+   console.log( "missedDucks from escaped --->" + missedDucks);
+    let ducks = Array.from(document.querySelector(".duckies").children);
+    switch(missedDucks) {
+        case 1: ducks[0].style.color = "red";
+        break;
+        case 2: ducks[1].style.color = "red"; ducks[0].style.color = "red";
+        break;
+        case 0: ducks.forEach(duck => {duck.style.color ="white";});
+        break;
+        default: ducks.forEach(duck => {duck.style.color ="red";});
+        break;
+    }
 }
 
 
