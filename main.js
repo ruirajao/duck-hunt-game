@@ -260,6 +260,17 @@ function updateWavesAndRounds() {
     rounds.innerHTML = `Round : ${roundsCounter} / ${maxRounds}`;
 }
 
+function refreshScore() {
+    let score = document.querySelector(".score");
+    score.innerHTML = `SCORE :     ${totalDucksKilled * 500}`;
+}
+
+function showBulletsAgain() {
+    const bulletCounter = document.getElementById("bullet-counter");
+    const childDivs = bulletCounter.querySelectorAll("div");
+    childDivs.forEach((div) => (div.style.display = "none"));
+}
+
 function hideMainMenu(){
     const mainMenu = document.querySelector(".main-menu-container");
     mainMenu.classList.add("hide-container");
