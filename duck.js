@@ -105,7 +105,7 @@ function spawnDuck(velocity) {
                 const fall = new Audio("audio/duck-falling.mp3");
                 fall.play();
                 duckElement.style.backgroundImage = 'url("sprites/duck/falling.gif")';
-                vy = -6;
+                vy = -4;
 
             }, 500);
         });
