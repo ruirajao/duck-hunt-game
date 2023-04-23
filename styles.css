@@ -56,8 +56,6 @@ body {
 }
 
 
-
-
 #field-container {
   background-image: url('sprites/sprite main.webp');
   background-repeat: no-repeat;
@@ -87,7 +85,6 @@ body {
   left: 40%;
   transform: scale(1);
 } */
-
 
 
 .duck {
@@ -306,11 +303,13 @@ body {
 
 #bullet-counter {
   position: fixed;
-  bottom: 0%;
   left: 5%;
   background-color: black;
   color: whitesmoke;
   z-index: 5;
+  bottom: 2%;
+  border: 3px solid rgb(162, 242, 119);
+  border-radius: 10px;
 }
 
 #bullet-counter img {
@@ -318,12 +317,12 @@ body {
   height: 50px;
 }
 
-#start-timer {
+/* #start-timer {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
+} */
 
 .bullet1-cover {
   position: absolute;
@@ -416,18 +415,18 @@ body {
   background-color: black;
   color: rgb(238, 233, 208);
   z-index: 5;
-  width: 70px;
-  height: 20px;
+  width: 140px;
+  height: 40px;
   border-radius: 10px;
   border: 3px solid rgb(204, 238, 13);
   font-family: PixelFont;
-  font-size: 1vw;
+  font-size: 1.75vw;
 }
 
 
 .stats-container {
   position: fixed;
-  bottom: 1%;
+  bottom: 2%;
   right: 3%;
   width: 15%;
   height: 18%;
@@ -496,9 +495,9 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 40%;
-  height: 30%; 
-  max-width: 90%; 
-  padding: 24px; 
+  height: 30%;
+  max-width: 90%;
+  padding: 24px;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: -999;
   justify-content: center;
@@ -518,7 +517,7 @@ body {
 }
 
 .game-over p {
-  font-size:  3vw;
+  font-size: 3vw;
   color: #fff;
   margin-bottom: 1vw;
   text-shadow: 1px 1px 1px #000;
@@ -528,7 +527,7 @@ body {
 
 .game-over #score {
   font-weight: bold;
-  font-size: 2.5vw ;
+  font-size: 2.5vw;
   font-family: PixelFont;
 }
 

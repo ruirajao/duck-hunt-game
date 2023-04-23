@@ -1,13 +1,11 @@
-// Get the pistol standby and shoot elements
 var pistolStandby = document.getElementById('pistol-standby');
 var pistolShoot = document.getElementById('pistol-shoot');
 let crosshair = document.getElementById('crosshair');
 pistolStandby.style.display = 'block';
 pistolShoot.style.display = 'none';
 
-// Add click event listener to the document object
+
 document.addEventListener('click', function () {
-  // Display the pistol shoot sprite
   if (isEnableShooting) {
     if (pistolStandby.style.display === 'block') {
       pistolStandby.style.display = 'none';
@@ -17,7 +15,7 @@ document.addEventListener('click', function () {
       pistolStandby.style.display = 'block';
     }
 
-    // Set a timeout to hide the pistol shoot sprite after 100ms
+    // timeout to hide the pistol shoot sprite after 100ms
     setTimeout(function () {
       pistolShoot.style.display = 'none';
       pistolStandby.style.display = 'block';
@@ -25,7 +23,6 @@ document.addEventListener('click', function () {
   }
 });
 
-// Add mousemove event listener to the document object
 document.addEventListener('mousemove', function (event) {
   var mouseX = event.clientX;
   var windowWidth = window.innerWidth;

@@ -11,35 +11,25 @@
 
 <body>
 
-    <!-- Add the pistol standby and shoot sprites as HTML elements with unique IDs -->
-    <div id="pistol-standby" class="pistol"></div>
-    <div id="pistol-shoot" class="pistol"></div>
-    <div id="bullet-counter">
-        <div class="bullet1-cover"></div>
-        <div class="bullet2-cover"></div>
-        <div class="bullet3-cover"></div>
-        <img src="sprites/bullet-counter/bullet-counter.png">
+    <div id="field-container">
+        <div id="coord" class="coordinates"></div>
     </div>
-
-    <div id="crosshair"></div>
-
-    <div id="game-starting-timer"></div>
-
-    <div id="round-number-display"></div>
 
     <button id="playButton">Play</button>
 
+    <div id="pistol-standby" class="pistol"></div>
+    <div id="pistol-shoot" class="pistol"></div>
+    <div id="crosshair"></div>
+
+    <div id="game-starting-timer"></div>
+    <div id="round-number-display"></div>
+
     <div id="duck-container">
-        <!-- DUCKS WILL BE HERE -->
+        <!-- Ducks will spawn here -->
         <!-- <img src="sprites/boss.gif"> -->
     </div>
-
     <div id="dog-container">
-        <!-- Dogs behind bush WILL BE HERE -->
-    </div>
-
-    <div id="field-container">
-        <div id="coord" class="coordinates"></div>
+        <!-- Dogs will spawn here -->
     </div>
 
     <div class="stats-container">
@@ -50,6 +40,12 @@
         </div>
     </div>
 
+    <div id="bullet-counter">
+        <div class="bullet1-cover"></div>
+        <div class="bullet2-cover"></div>
+        <div class="bullet3-cover"></div>
+        <img src="sprites/bullet-counter/bullet-counter.png">
+    </div>
 
     <div id="wave-time-left"></div>
     <div id="game-over" class="game-over">
