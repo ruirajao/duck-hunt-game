@@ -331,7 +331,7 @@ body {
   right: 45px;
   width: 20px;
   height: 25px;
-  background-color: rgb(30, 22, 22);
+  background-color: black;
   z-index: 1;
   display: none;
 }
@@ -342,7 +342,7 @@ body {
   right: 25px;
   width: 20px;
   height: 25px;
-  background-color: rgb(30, 22, 22);
+  background-color: black;
   z-index: 1;
   display: none;
 }
@@ -353,7 +353,7 @@ body {
   right: 5px;
   width: 20px;
   height: 25px;
-  background-color: rgb(30, 22, 22);
+  background-color: black;
   z-index: 1;
   display: none;
 }
@@ -672,7 +672,7 @@ body {
   border-radius: 10px;
   z-index: 5;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   flex-direction: row;
   overflow: hidden;
