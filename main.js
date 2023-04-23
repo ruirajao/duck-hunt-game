@@ -42,6 +42,7 @@ function startWaves() {
     console.log("Wave counter:" + waveCounter);
     isWaveFinished = false;
     bulletCounter = 3;
+    showBulletsAgain();
     clearTimeout(roundsCounter);
     setCountdownToWaveEnd();
     enableShooting();
@@ -60,10 +61,18 @@ function finishWave() {
     console.log("-finishWave method-");
     clearTimeout(waveTimeOut);
     deleteAllDucks();
+    console.log("missedDucks: " + missedDucks + "||" + " maxMissedDucksToGameover: " + maxMissedDucksToGameover)
 
-    if (missedDucks === maxMissedDucksToGameover) {
-        console.log("----GAME OVER: Eu gostava de dar game over mas...");
-        //gameOver();
+    //GAME OVER:
+    if (missedDucks >= maxMissedDucksToGameover) {
+        console.log("disableShooting a baixo")
+        disableShooting();
+        console.log("deleteAllDucks a baixo")
+        deleteAllDucks();
+        console.log("clearTimeout a baixo")
+        clearTimeout(waveTimeOut);
+        showGameOver(totalDucksKilled * 500);
+        return;
     }
 
 
@@ -79,18 +88,20 @@ function finishWave() {
 }
 
 function setCountdownToWaveEnd() {
-    // Clears any previous timeouts
-    clearTimeout(waveTimeOut);
-    let timeToWaveEnd = 10000;
+    if (!isGameOver) {
+        // Clears any previous timeouts
+        clearTimeout(waveTimeOut);
+        let timeToWaveEnd = 10000;
 
-    waveTimeOut = setTimeout(function () {
-        console.log("-> Finish wave chamado do Timer 10 seg");
-        if (!isWaveFinished) {
-            isWaveFinished = true;
-            finishWave();
-        }
+        waveTimeOut = setTimeout(function () {
+            console.log("-> Finish wave chamado do Timer 10 seg");
+            if (!isWaveFinished) {
+                isWaveFinished = true;
+                finishWave();
+            }
 
-    }, timeToWaveEnd); // Store the new timeout ID
+        }, timeToWaveEnd); // Store the new timeout ID
+    }
 }
 
 //Bullets refresher - End wave if out of bullets
@@ -203,13 +214,13 @@ function showBullets() {
 
     document.addEventListener('click', () => {
         if (isEnableShooting) {
-            // if (bulletCounter === 3) {
-            //     bullet1Cover.style.display = 'inline';
-            // } else if (bulletCounter === 2) {
-            //     bullet2Cover.style.display = 'inline';
-            // } else if (bulletCounter === 1) {
-            //     bullet3Cover.style.display = 'inline';
-            // }
+            if (bulletCounter === 3) {
+                bullet1Cover.style.display = 'inline';
+            } else if (bulletCounter === 2) {
+                bullet2Cover.style.display = 'inline';
+            } else if (bulletCounter === 1) {
+                bullet3Cover.style.display = 'inline';
+            }
 
             bulletCounter--;
             bullet.play();
@@ -233,6 +244,7 @@ document.addEventListener('click', () => {
     if (isEnableShooting) {
         checkOutOfBulletsAndUpdate();
         checkDucksKilledsAndUpdate();
+        refreshScore();
     }
 });
 
@@ -241,4 +253,15 @@ function updateWavesAndRounds() {
     let rounds = document.querySelector(".round-number");
     waves.innerHTML = `WAVE : ${waveCounter} / ${maxWaves} `;
     rounds.innerHTML = `ROUND : ${roundsCounter} / ${maxRounds}`;
+}
+
+function refreshScore() {
+    let score = document.querySelector(".score");
+    score.innerHTML = `SCORE :     ${totalDucksKilled * 500}`;
+}
+
+function showBulletsAgain() {
+    const bulletCounter = document.getElementById("bullet-counter");
+    const childDivs = bulletCounter.querySelectorAll("div");
+    childDivs.forEach((div) => (div.style.display = "none"));
 }
