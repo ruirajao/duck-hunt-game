@@ -614,13 +614,11 @@ body {
 #play-button {
   width: 200px;
   height: 100px;
-  position: relative;
-  top: 600px;
-}
-
-#play-button {
+  position: fixed;
+  bottom: 35%;
   filter: grayscale(100%);
   transition: filter 0.3s ease-in-out;
+  z-index: 999;
 }
 
 #play-button:hover {
