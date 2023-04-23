@@ -56,8 +56,6 @@ body {
 }
 
 
-
-
 #field-container {
   background-image: url('sprites/sprite main.webp');
   background-repeat: no-repeat;
@@ -87,7 +85,6 @@ body {
   left: 40%;
   transform: scale(1);
 } */
-
 
 
 .duck {
@@ -306,12 +303,12 @@ body {
 
 #bullet-counter {
   position: fixed;
-  bottom: 0%;
   left: 5%;
   background-color: black;
   color: whitesmoke;
   z-index: 5;
-  border: 3px solid rgb(234, 238, 13);
+  bottom: 2%;
+  border: 3px solid rgb(162, 242, 119);
   border-radius: 10px;
 }
 
@@ -321,12 +318,12 @@ body {
   border-radius: 10px;
 }
 
-#start-timer {
+/* #start-timer {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
+} */
 
 .bullet1-cover {
   position: absolute;
@@ -334,7 +331,7 @@ body {
   right: 45px;
   width: 20px;
   height: 25px;
-  background-color: black;
+  background-color: rgb(30, 22, 22);
   z-index: 1;
   display: none;
 }
@@ -345,7 +342,7 @@ body {
   right: 25px;
   width: 20px;
   height: 25px;
-  background-color: black;
+  background-color: rgb(30, 22, 22);
   z-index: 1;
   display: none;
 }
@@ -356,7 +353,7 @@ body {
   right: 5px;
   width: 20px;
   height: 25px;
-  background-color: black;
+  background-color: rgb(30, 22, 22);
   z-index: 1;
   display: none;
 }
@@ -419,17 +416,18 @@ body {
   background-color: black;
   color: rgb(238, 233, 208);
   z-index: 5;
-  width: 70px;
-  height: 20px;
+  width: 140px;
+  height: 40px;
   border-radius: 10px;
   border: 3px solid rgb(204, 238, 13);
   font-family: PixelFont;
+  font-size: 1.75vw;
 }
 
 
 .stats-container {
   position: fixed;
-  bottom: 1%;
+  bottom: 2%;
   right: 3%;
   width: 15%;
   height: 18%;
@@ -445,10 +443,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(3, 3, 11);
+  background-color: black;
   color: white;
   border: 3px solid rgb(162, 242, 119);
   border-radius: 10px;
+  font-size: 2vw;
+  font-family: PixelFont;
 }
 
 .bottom-section {
@@ -465,12 +465,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(13, 13, 13);
+  background-color: black;
   color: white;
   border: 3px solid rgb(234, 238, 13);
   border-radius: 10px;
+  font-size: 1.5vw;
   font-family: PixelFont;
-  font-size: 150%;
 }
 
 .round-number {
@@ -480,11 +480,75 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(5, 8, 8);
+  background-color: black;
   color: white;
   border: 3px solid rgb(238, 227, 13);
   border-left: none;
   border-radius: 10px;
+  font-size: 1.5vw;
+  font-family: PixelFont;
+}
+
+.game-over {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: 30%;
+  max-width: 90%;
+  padding: 24px;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: -999;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 3vw;
+}
+
+
+.game-over h1 {
+  font-size: 8vh;
+  color: #fff;
+  margin-bottom: 1vw;
+  text-shadow: 2px 2px 2px #000;
+  color: #ff5733;
+  font-family: PixelFont;
+}
+
+.game-over p {
+  font-size: 3vw;
+  color: #fff;
+  margin-bottom: 1vw;
+  text-shadow: 1px 1px 1px #000;
+  color: #f6ff00;
+  font-family: PixelFont;
+}
+
+.game-over #score {
+  font-weight: bold;
+  font-size: 2.5vw;
+  font-family: PixelFont;
+}
+
+.game-over button {
+  margin-top: 2vh;
+  padding: 1vw 2vw;
+  font-size: 2vw;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 1vw;
+  transition: background-color 0.3s ease;
+  font-family: PixelFont;
+
+}
+
+.game-over button:hover {
+  background-color: #d8e70f;
+  border-radius: 2vw;
   font-family: PixelFont;
   font-size: 150%;
 }
