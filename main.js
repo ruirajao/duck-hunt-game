@@ -9,7 +9,7 @@ const bullet3Cover = document.querySelector(".bullet3-cover");
 
 const bullet = new Audio("audio/gun-shot.mp3")
 
-let maxRounds = 5;
+//let maxRounds = 5;
 let roundsCounter = 1;
 
 let maxWaves = 3;
@@ -60,13 +60,15 @@ function startNewRound() {
     (roundsCounter > 1) ? displayRoundNumber(roundsCounter) : "Let's go";
     //Automatically switch backgrounds for each round
     switch (roundsCounter) {
-        case 1: bodyContainer.style.backgroundImage = 'url("/sprites/rain.gif")';
+        case 1: bodyContainer.style.backgroundColor = 'lightskyblue;';
             break;
-        case 2: bodyContainer.style.backgroundImage = 'url("/sprites/rain.gif")';
+        case 2: bodyContainer.style.backgroundColor = 'lightgreen;';
             break;
-        case 3: bodyContainer.style.backgroundImage = 'url("/sprites/space-warp.gif")';
+        case 3: bodyContainer.style.backgroundColor = 'orange';
             break;
-        default: bodyContainer.style.backgroundImage = 'url("/sprites/hell.gif")';
+        case 4: bodyContainer.style.backgroundColor = 'rgb(192, 134, 9);';
+            break;
+        default: bodyContainer.style.backgroundColor = 'lightcoral';
             break;
     }
     setTimeout(() => startWaves(), 2000);
@@ -229,7 +231,8 @@ function updateWavesAndRounds() {
     let waves = document.querySelector(".waves");
     let rounds = document.querySelector(".round-number");
     waves.innerHTML = `WAVE : ${waveCounter} / ${maxWaves} `;
-    rounds.innerHTML = `Round : ${roundsCounter} / ${maxRounds}`;
+    //rounds.innerHTML = `Round : ${roundsCounter} / ${maxRounds}`; //Uncomment to set a max number of rounds
+    rounds.innerHTML = `Round : ${roundsCounter} /∞`;
 }
 
 function refreshScore() {
