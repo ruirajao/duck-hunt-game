@@ -1,8 +1,14 @@
 const fieldContainer = document.getElementById('field-container');
 const crosshairContainter = document.getElementById("crosshair");
 const pistolShootContainer = document.getElementById('pistol-shoot');
+const bodyContainer = document.body;
 
-const bullet = new Audio("audio/gun-shot.mp3");
+
+const bullet1Cover = document.querySelector(".bullet1-cover");
+const bullet2Cover = document.querySelector(".bullet2-cover");
+const bullet3Cover = document.querySelector(".bullet3-cover");
+
+const bullet = new Audio("audio/gun-shot.mp3")
 
 let maxRounds = 5;
 let roundsCounter = 1;
@@ -23,10 +29,21 @@ let waveTimeOut;
 
 document.addEventListener('click', () => {
     if (isEnableShooting) {
-        checkOutOfBulletsAndUpdate();
-        checkDucksKilledsAndUpdate();
-        refreshScore();
+        bulletCounter--;
+        bullet.play();
+    } if (bulletCounter === 2) {
+        bullet1Cover.style.display = 'inline';
+    } else if (bulletCounter === 1) {
+        bullet1Cover.style.display = 'inline';
+        bullet2Cover.style.display = 'inline';
+    } else if (bulletCounter === 0) {
+        bullet1Cover.style.display = 'inline';
+        bullet2Cover.style.display = 'inline';
+        bullet3Cover.style.display = 'inline';
     }
+    checkOutOfBulletsAndUpdate();
+    checkDucksKilledsAndUpdate();
+    refreshScore();
 });
 
 function play() {
@@ -45,14 +62,24 @@ function startGame() {
 
 function startNewRound() {
     (roundsCounter > 1) ? displayRoundNumber(roundsCounter) : "Let's go";
-
+    //Automatically switch backgrounds for each round
+    switch (roundsCounter) {
+        case 1: bodyContainer.style.backgroundImage = 'url("/sprites/rain.gif")';
+            break;
+        case 2: bodyContainer.style.backgroundImage = 'url("/sprites/rain.gif")';
+            break;
+        case 3: bodyContainer.style.backgroundImage = 'url("/sprites/space-warp.gif")';
+            break;
+        default: bodyContainer.style.backgroundImage = 'url("/sprites/hell.gif")';
+            break;
+    }
     setTimeout(() => startWaves(), 2000);
 }
 
 function startWaves() {
     isWaveFinished = false;
     bulletCounter = 3;
-    showBulletsAgain();
+    showBullets();
     clearTimeout(roundsCounter);
     setCountdownToWaveEnd();
     enableShooting();
@@ -64,12 +91,10 @@ function startWaves() {
     for (let i = 0; i < ducksPerWave; i++) {
         spawnDuck(roundsCounter);
     }
-
 }
 
 function finishWave() {
     clearTimeout(waveTimeOut);
-    deleteAllDucks();
     console.log("missedDucks: " + missedDucks + "||" + " maxMissedDucksToGameover: " + maxMissedDucksToGameover)
 
     // Game over
@@ -90,6 +115,7 @@ function finishWave() {
         startWaves();
     }
     updateWavesAndRounds();
+    ducksKilledWave = 0;
 }
 
 function setCountdownToWaveEnd() {
@@ -101,6 +127,7 @@ function setCountdownToWaveEnd() {
         waveTimeOut = setTimeout(function () {
             if (!isWaveFinished) {
                 isWaveFinished = true;
+                deleteAllDucks();
                 finishWave();
             }
 
@@ -113,6 +140,7 @@ function checkOutOfBulletsAndUpdate() {
         disableShooting();
         isWaveFinished = true;
         clearTimeout(waveTimeOut);
+        deleteAllDucks();
         setTimeout(finishWave, 1500);
     }
 }
@@ -196,28 +224,6 @@ function displayRoundNumber(roundCounter) {
     });
 }
 
-function showBullets() {
-    const bulletCounterElement = document.getElementById("bullet-counter");
-    const bullet1Cover = document.querySelector(".bullet1-cover");
-    const bullet2Cover = document.querySelector(".bullet2-cover");
-    const bullet3Cover = document.querySelector(".bullet3-cover");
-    const bullet = new Audio("audio/gun-shot.mp3")
-
-    document.addEventListener('click', () => {
-        if (isEnableShooting) {
-            if (bulletCounter === 3) {
-                bullet1Cover.style.display = 'inline';
-            } else if (bulletCounter === 2) {
-                bullet2Cover.style.display = 'inline';
-            } else if (bulletCounter === 1) {
-                bullet3Cover.style.display = 'inline';
-            }
-
-            bulletCounter--;
-            bullet.play();
-        }
-    });
-}
 
 function enableShooting() {
     isEnableShooting = true;
@@ -228,8 +234,6 @@ function disableShooting() {
     isEnableShooting = false;
     document.getElementById("crosshair").style.backgroundImage = 'url(/sprites/forbidden.png)';
 }
-
-
 
 function updateWavesAndRounds() {
     let waves = document.querySelector(".waves");
@@ -243,7 +247,7 @@ function refreshScore() {
     score.innerHTML = `SCORE :     ${totalDucksKilled * 500}`;
 }
 
-function showBulletsAgain() {
+function showBullets() {
     const bulletCounter = document.getElementById("bullet-counter");
     const childDivs = bulletCounter.querySelectorAll("div");
     childDivs.forEach((div) => (div.style.display = "none"));

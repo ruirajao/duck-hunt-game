@@ -492,19 +492,16 @@ body {
 .game-over {
   display: none;
   flex-direction: column;
+  justify-content: center;
   position: fixed;
-  top: 50%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 30%;
-  height: 30%;
   max-width: 90%;
   padding: 24px;
   background-color: rgba(255, 255, 255, 0.3);
-  /* Change background color to white with opacity /*/
   backdrop-filter: blur(5px);
   z-index: -999;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   border-radius: 3vw;
@@ -520,16 +517,20 @@ body {
   text-shadow: 2px 2px 2px #000;
   color: #ff5733;
   font-family: PixelFont;
+  margin-left: 7vw;
+  margin-right: 7vw;
 }
 
 .game-over p {
-  font-size: 3vw;
+  font-size: 8vh;
   color: #fff;
   margin-bottom: 1vw;
   margin-top: 1vw;
-  text-shadow: 1px 1px 1px #000;
-  color: #f6ff00;
+  text-shadow: 2px 2px 2px #000;
+  color: yellow;
   font-family: PixelFont;
+  margin-left: 7vw;
+  margin-right: 7vw;
 }
 
 .game-over #score {
@@ -660,7 +661,7 @@ body {
   }
 }
 
-.ducks-bar { 
+.ducks-bar {
   font-size: 2Vh;
   background-color: black;
   color: whitesmoke;
@@ -687,8 +688,9 @@ body {
   margin-right: 0.6vh;
   margin-bottom: 0.1vw;
   margin-top: 0.1vw;
-  overflow: hidden; 
+  overflow: hidden;
 }
+
 .duckies {
   justify-content: center;
   align-items: center;
@@ -705,4 +707,3 @@ body {
   right: 0;
   font-size: 1.8vw;
 }
-
