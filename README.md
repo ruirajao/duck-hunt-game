@@ -28,7 +28,7 @@ To run the game locally on your machine, follow these steps:
     - HTML: Used for structuring the game layout and user interface.
     - CSS: Used for styling the game and creating animations.
 
-## How to play and game rules <a name = "how to play"></a>
+## How to play <a name = "how to play"></a>
     - Open the index.html file in your web browser.
     - Click the "Start Game" button to begin.
     - Use your mouse to aim and click on the ducks to shoot them.
@@ -36,7 +36,7 @@ To run the game locally on your machine, follow these steps:
     - Each successful hit earns you points.
     - Click the "Restart" button to play again.
 
-<b> Game Rules: </b>
+## Game rules <a name = "Game rules"></a>
     - Unlimited rounds per game.
     - Each round consists of 3 waves.
     - Each wave spawns 2 ducks for the player to shoot.
