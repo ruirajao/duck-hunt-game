@@ -1,7 +1,6 @@
 body {
   position: relative;
   background-color: lightskyblue;
-  /* background-image: url("/sprites/hell.gif"); */
   background-size: cover;
   background-repeat: no-repeat;
   z-index: 0;
@@ -29,8 +28,8 @@ body {
   transform: translate(-50%, -50%);
 }
 
-#pistol-standby {
-  background-image: url('sprites/pistol/pistol_standby.png');
+#pistol-standby,
+#pistol-shoot {
   background-size: contain;
   background-repeat: no-repeat;
   width: 20%;
@@ -42,19 +41,13 @@ body {
   z-index: 3;
 }
 
-#pistol-shoot {
-  background-image: url('sprites/pistol/pistol_shoot.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 20%;
-  height: 20%;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 4;
+#pistol-standby {
+  background-image: url('sprites/pistol/pistol_standby.png');
 }
 
+#pistol-shoot {
+  background-image: url('sprites/pistol/pistol_shoot.png');
+}
 
 #field-container {
   background-image: url('sprites/sprite main.webp');
@@ -77,16 +70,6 @@ body {
   z-index: 1;
 }
 
-
-/* #duck-container img {
-  background-size: 100%;
-  position: absolute;
-  bottom: 20%;
-  left: 40%;
-  transform: scale(1);
-} */
-
-
 .duck {
   width: 78px;
   height: 73px;
@@ -98,7 +81,6 @@ body {
   transform: translate(-50%, -50%);
   transition: transform 0.5s ease;
 }
-
 
 #dog1 {
   position: absolute;
@@ -169,8 +151,6 @@ body {
     opacity: 0%;
   }
 }
-
-
 
 #dog-container {
   z-index: 1
@@ -259,7 +239,6 @@ body {
 }
 
 
-
 #dog2.laugh {
   position: absolute;
   width: 10vw;
@@ -318,44 +297,28 @@ body {
   border-radius: 10px;
 }
 
-/* #start-timer {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-} */
-
-.bullet1-cover {
-  position: absolute;
-  top: 0;
-  right: 45px;
-  width: 20px;
-  height: 25px;
-  background-color: black;
-  z-index: 1;
-  display: none;
-}
-
-.bullet2-cover {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  width: 20px;
-  height: 25px;
-  background-color: black;
-  z-index: 1;
-  display: none;
-}
-
+.bullet1-cover,
+.bullet2-cover,
 .bullet3-cover {
   position: absolute;
   top: 0;
-  right: 5px;
   width: 20px;
   height: 25px;
   background-color: black;
   z-index: 1;
   display: none;
+}
+
+.bullet1-cover {
+  right: 45px;
+}
+
+.bullet2-cover {
+  right: 25px;
+}
+
+.bullet3-cover {
+  right: 5px;
 }
 
 #game-starting-timer {
@@ -405,7 +368,6 @@ body {
   }
 }
 
-
 #wave-time-left {
   position: fixed;
   display: flex;
@@ -424,7 +386,6 @@ body {
   font-size: 1.75vw;
 }
 
-
 .stats-container {
   position: fixed;
   bottom: 2%;
@@ -438,19 +399,6 @@ body {
   overflow: hidden;
 }
 
-.score {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: black;
-  color: white;
-  border: 3px solid rgb(162, 242, 119);
-  border-radius: 10px;
-  font-size: 2vw;
-  font-family: PixelFont;
-}
-
 .bottom-section {
   height: 60%;
   width: 100%;
@@ -458,7 +406,9 @@ body {
   flex-direction: row;
 }
 
-.waves {
+.score,
+.waves,
+.round-number {
   height: 50%;
   width: 50%;
   flex: 1;
@@ -473,20 +423,10 @@ body {
   font-family: PixelFont;
 }
 
-.round-number {
-  height: 50%;
-  width: 50%;
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: black;
-  color: white;
-  border: 3px solid rgb(238, 227, 13);
-  border-left: none;
-  border-radius: 10px;
-  font-size: 1.5vw;
-  font-family: PixelFont;
+.score {
+  font-size: 2vw;
+  height: 100% !important;
+  width: 100% !important;
 }
 
 .game-over {
@@ -503,34 +443,27 @@ body {
   backdrop-filter: blur(5px);
   z-index: -999;
   align-items: center;
-  flex-direction: column;
   border-radius: 3vw;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-
-.game-over h1 {
+.game-over h1,
+.game-over p {
   font-size: 8vh;
-  color: #fff;
   margin-bottom: 1vw;
   margin-top: 1vw;
   text-shadow: 2px 2px 2px #000;
-  color: #ff5733;
   font-family: PixelFont;
   margin-left: 7vw;
   margin-right: 7vw;
 }
 
+.game-over h1 {
+  color: #ff5733;
+}
+
 .game-over p {
-  font-size: 8vh;
-  color: #fff;
-  margin-bottom: 1vw;
-  margin-top: 1vw;
-  text-shadow: 2px 2px 2px #000;
   color: yellow;
-  font-family: PixelFont;
-  margin-left: 7vw;
-  margin-right: 7vw;
 }
 
 .game-over #score {
@@ -596,18 +529,16 @@ body {
   font-family: PixelFont;
   font-size: 1300%;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 2px 2px 0 #000;
+  position: relative;
 }
 
 #duck-text {
   color: rgb(48, 206, 0);
-  position: relative;
   right: 100px;
-
 }
 
 #hunt-text {
   color: rgb(242, 125, 0);
-  position: relative;
   left: 100px;
   bottom: 350px;
 }
@@ -657,7 +588,6 @@ body {
 
   100% {
     transform: translateX(100vw);
-    /* use 100vw instead of 100% to move across the entire screen */
   }
 }
 

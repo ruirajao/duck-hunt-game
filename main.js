@@ -3,7 +3,6 @@ const crosshairContainter = document.getElementById("crosshair");
 const pistolShootContainer = document.getElementById('pistol-shoot');
 const bodyContainer = document.body;
 
-
 const bullet1Cover = document.querySelector(".bullet1-cover");
 const bullet2Cover = document.querySelector(".bullet2-cover");
 const bullet3Cover = document.querySelector(".bullet3-cover");
@@ -34,12 +33,9 @@ document.addEventListener('click', () => {
     } if (bulletCounter === 2) {
         bullet1Cover.style.display = 'inline';
     } else if (bulletCounter === 1) {
-        bullet1Cover.style.display = 'inline';
-        bullet2Cover.style.display = 'inline';
+        bullet1Cover.style.display, bullet2Cover.style.display = 'inline';
     } else if (bulletCounter === 0) {
-        bullet1Cover.style.display = 'inline';
-        bullet2Cover.style.display = 'inline';
-        bullet3Cover.style.display = 'inline';
+        bullet1Cover.style.display, bullet2Cover.style.display, bullet3Cover.style.display = 'inline';
     }
     checkOutOfBulletsAndUpdate();
     checkDucksKilledsAndUpdate();
@@ -130,7 +126,6 @@ function setCountdownToWaveEnd() {
                 deleteAllDucks();
                 finishWave();
             }
-
         }, timeToWaveEnd);
     }
 }
@@ -145,7 +140,6 @@ function checkOutOfBulletsAndUpdate() {
     }
 }
 
-
 function checkDucksKilledsAndUpdate() {
     if (ducksKilledWave === 2 && !isWaveFinished) {
         disableShooting();
@@ -155,8 +149,6 @@ function checkDucksKilledsAndUpdate() {
         setTimeout(finishWave, 1500);
     }
 }
-
-
 
 //GAME STARTING TIMER
 let gameStartingEndTimer;
@@ -210,7 +202,6 @@ function displayWaveTimer(seconds) {
     updateTimer();
 }
 
-
 function displayRoundNumber(roundCounter) {
     roundNumberContainer = document.getElementById('round-number-display');
     roundElement = document.createElement('div');
@@ -223,7 +214,6 @@ function displayRoundNumber(roundCounter) {
         }, 3000);
     });
 }
-
 
 function enableShooting() {
     isEnableShooting = true;
