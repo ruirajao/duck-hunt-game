@@ -93,7 +93,6 @@ function startWaves() {
 
 function finishWave() {
     clearTimeout(waveTimeOut);
-    console.log("missedDucks: " + missedDucks + "||" + " maxMissedDucksToGameover: " + maxMissedDucksToGameover)
 
     // Game over
     if (missedDucks >= maxMissedDucksToGameover) {

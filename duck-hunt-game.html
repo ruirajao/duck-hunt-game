@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="main-menu-container" class="main-menu-container">
+        <div id="main-menu" class="main-menu">
+            <img id="play-button" src="sprites/play-button.png" onclick="play()">
+            <div id="main-menu-birds">
+                <img id="bird-one" src="sprites/duck/flyright.gif">
+                <img id="bird-two" src="sprites/duck/flyright.gif">
+            </div>
+            <h1 id="duck-text">DUCK</h1>
+            <h1 id="hunt-text">HUNT</h1>
+        </div>
+    </div>
+
+    <div id="field-container">
+        <div id="coord" class="coordinates"></div>
+    </div>
+
+    <audio id="intro-audio" src="audio/intro-no-bark.mp3" loop="loop" autoplay></audio>
+
+    <!-- Add the pistol standby and shoot sprites as HTML elements with unique IDs -->
+    <div id="pistol-standby" class="pistol"></div>
+    <div id="pistol-shoot" class="pistol"></div>
+    <div id="crosshair"></div>
+
+    <div id="game-starting-timer"></div>
+    <div id="round-number-display"></div>
+
+    <div id="duck-container">
+        <!-- Ducks will spawn here -->
+        <!-- <img src="sprites/boss.gif"> -->
+    </div>
+    <div id="dog-container">
+        <!-- Dogs will spawn here -->
+    </div>
+
+    <div class="stats-container">
+        <div class="score"></div>
+        <div class="bottom-section">
+            <div class="waves"></div>
+            <div class="round-number"></div>
+        </div>
+    </div>
+
+    <div id="bullet-counter">
+        <div class="bullet1-cover"></div>
+        <div class="bullet2-cover"></div>
+        <div class="bullet3-cover"></div>
+        <img src="sprites/bullet-counter/bullet-counter.png">
+    </div>
+
+    <div id="wave-time-left"></div>
+    <div id="game-over" class="game-over">
+        <h1>Game Over</h1>
+        <p>Score: <span id="score">0</span></p>
+        <button id="restart-button">Restart</button>
+    </div>
+
+    <div class="ducks-bar">
+        <div class="ducks-bar-inner">
+         ESCAPED
+        </div>
+        <div class="duckies">
+            <div>𓅭</div>
+            <div>𓅭</div>
+            <div>𓅭</div>
+        </div>
+      </div>
+
+
+    <script src="duck.js"></script>
+    <script src="dog.js"></script>
+    <script src="pistol.js"></script>
+    <script src="gameover.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

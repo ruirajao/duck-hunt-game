@@ -125,7 +125,6 @@ function spawnDuck(velocity) {
 
     function checkAndRemoveDuck() {
         let rect = duckElement.getBoundingClientRect();
-        console.log
         if (rect.bottom > fieldContainer.offsetHeight * 0.75) {
             duckElement.remove();
 
@@ -156,7 +155,6 @@ function deleteAllDucks() {
 }
 
 function escapedDucksDisplay() {
-   console.log( "missedDucks from escaped --->" + missedDucks);
     let ducks = Array.from(document.querySelector(".duckies").children);
     switch(missedDucks) {
         case 1: ducks[0].style.color = "red";
